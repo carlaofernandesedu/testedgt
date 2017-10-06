@@ -1,24 +1,13 @@
 ﻿using EscolaUI.Tests.Helpers;
+using System;
 
 namespace EscolaUI.Tests.Pages
 {
     public abstract class BasePage
     {
-        protected SeleniumHelper Driver
-        {
-            get
-            {
-                return BaseUITest.Driver;
-            }
-        }
+        protected ISeleniumHelper Driver { get; set; }
 
-        public ISeleniumHelper Browser
-        {
-            get
-            {
-                return BaseUITest.Driver;
-            }
-        }
+        public abstract Uri ConstructUrl();
 
         public string Titulo
         {
@@ -38,40 +27,40 @@ namespace EscolaUI.Tests.Pages
         /// </summary>
         public BasePage()
         {
-
+            baseURL = ConfigurationHelper.SiteUrl;
         }
 
-        public BasePage(string url) 
+        public BasePage(string baseurl, ISeleniumHelper driver) 
         {
-            baseURL = url;
-            
-
+            baseURL = baseurl;
+            Driver = driver; 
         }
 
-        protected internal void InicializarElementos(object page)
+        public virtual BasePage DefinirBaseURL(string baseurl)
         {
-            Driver.InicializarElementos(page);
+            baseURL = baseurl;
+            return this;
         }
 
-        //public BasePage(string url) : this(url,30,30,false,false)
-        //{
+        public virtual BasePage DefinirDriver(ISeleniumHelper driver)
+        {
+            Driver = driver; 
+            return this; 
+        }
 
-        //}
+        public virtual BasePage  InicializarElementos()
+        {
+            Driver.InicializarElementos(this);
+            return this; 
+        }
 
-        //public BasePage(string url, int scriptSegundos = 30, int paginaSegundos = 30, bool Maximizado = false, bool LimparCookies = false)
-        //{
-        //    baseURL = url;
-        //    Browser.InicializarElementos(this);
-
-        //}
-        protected internal void ExecutarScript(string jsScript)
+        
+        
+        public virtual BasePage ExecutarScript(string jsScript)
         {
             Driver.ExecutarScripts(jsScript);
+            return this;
         }
-
-        protected internal void ObterScreenShot(string nomeArquivo)
-        {
-            Driver.ObterScreenShot(nomeArquivo);
-        }
+       
     }
 }

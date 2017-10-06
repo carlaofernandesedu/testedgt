@@ -20,14 +20,6 @@ namespace EscolaUI.Tests.Pages
         [FindsBy(How = How.CssSelector, Using = "#rso a:nth-child(1)")]
         public IWebElement firstResult { get; set; }
 
-
-        public GooglePage() 
-        {
-            baseURL = ConfigurationHelper.SiteUrl;
-            Browser.NavegarParaSite(baseURL);
-            InicializarElementos(this);
-        }
-
         /// <summary>
         /// Query a search to Google's official page.
         /// </summary>
@@ -36,6 +28,11 @@ namespace EscolaUI.Tests.Pages
         {
             txtSearch.PreencherCampo(texto);
             btnSearch.ClicarEAguardar();
+        }
+
+        public override Uri ConstructUrl()
+        {
+            return new Uri("http://www.google.com");
         }
     }
 }

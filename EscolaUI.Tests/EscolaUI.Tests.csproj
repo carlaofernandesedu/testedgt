@@ -60,6 +60,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BaseUI2Test.cs" />
     <Compile Include="BaseTestUI.cs" />
     <Compile Include="Helpers\ConfigurationHelper.cs" />
     <Compile Include="Helpers\ISeleniumHelper.cs" />

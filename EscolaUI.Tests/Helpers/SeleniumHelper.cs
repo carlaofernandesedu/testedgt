@@ -9,36 +9,44 @@ using System.Linq;
 using System.Configuration;
 using System.IO;
 using System.Threading;
+using EscolaUI.Tests.Pages;
 
 namespace EscolaUI.Tests.Helpers
 {
     public class SeleniumHelper : ISeleniumHelper
     {
+        //TODO: Revisar uso de conceito estatico 
+        /*
         public static IWebDriver Cb;
         public WebDriverWait Wait;
-
         private static SeleniumHelper _instance;
+        private SeleniumHelper _instance;
+        */
+        public IWebDriver Cb;
+        public WebDriverWait Wait;
+        
         public static SeleniumHelper Instance()
         {
-            return _instance ?? (_instance = new SeleniumHelper());
+            //return _instance ?? (_instance = new SeleniumHelper());
+            return new SeleniumHelper();
         }
 
         protected SeleniumHelper()
         {
             Cb = FabricarDriver(ConfigurationHelper.BrowserType);
-            Wait = new WebDriverWait(Cb, TimeSpan.FromSeconds(30));
+            Wait = new WebDriverWait(Cb, TimeSpan.FromSeconds(ConfigurationHelper.SegundosAguardandoCargaWebDriverWait));
         }
 
-        private static IWebDriver FabricarDriver(int tipo)
+        private static IWebDriver FabricarDriver(string driver)
         {
             IWebDriver retorno = null;
-            switch (tipo)
+            switch (driver.ToLower())
             {
-                case 1:
+                case "chrome":
                     //retorno = new ChromeDriver(ConfigurationHelper.ChromeDrive);
                     retorno = new ChromeDriver();
                     break;
-                case 2:
+                case "firefox":
                     //retorno = new FirefoxDriver(FirefoxDriverService.CreateDefaultService(ConfigurationHelper.FirefoxDriver));
                     retorno = new FirefoxDriver();
                     break;
@@ -73,7 +81,7 @@ namespace EscolaUI.Tests.Helpers
             return Wait.Until(ExpectedConditions.UrlContains(conteudo));
         }
 
-        public string NavegarParaSite(string url)
+        public string NavegarPara(string url)
         {
             Cb.Navigate().GoToUrl(url);
             return ObterUrl();
@@ -109,6 +117,23 @@ namespace EscolaUI.Tests.Helpers
         public string ObterTextoPorXPath(string xpath)
         {
             return Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(xpath))).Text;
+        }
+
+        public  T ObterPagina<T>( bool limparCookies = false, bool maximizado = true)
+            where T : BasePage, new()
+        {
+            T page = new T();
+             
+            if (page.ConstructUrl() == null)
+            {
+                throw new InvalidOperationException("Unable to find URL for requested page.");
+            }
+            page.DefinirDriver(this);
+            LimparCookies(limparCookies);
+            NavegarPara(page.ConstructUrl().AbsoluteUri);
+            Maximizar(maximizado);
+            page.InicializarElementos();
+            return page;
         }
 
         public IEnumerable<IWebElement> ObterElementosPorClasse(string className)

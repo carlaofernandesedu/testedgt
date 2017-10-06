@@ -20,11 +20,12 @@ namespace EscolaUI.Tests.Pages
 
         public LoginPage()  
         {
-            baseURL = ConfigurationHelper.LoginUrl;
-            Browser.NavegarParaSite(baseURL);
-            InicializarElementos(this);
         }
-        
+
+        public override Uri ConstructUrl()
+        {
+            return new Uri("http://consumidordes.prodesp.sp.gov.br/Login");
+        }
     }
     
 }

@@ -11,7 +11,11 @@ namespace EscolaUI.Tests.Helpers
 {
     public static class ConfigurationHelper
     {
- 
+        public static int SegundosAguardandoCargaWebDriverWait
+        {
+            get { return 30; }
+        }
+
         public static int SegundosExecucaoScript
         {
             get { return Convert.ToInt32(ConfigurationManager.AppSettings["SegundosExecucaoScript"]); }
@@ -68,15 +72,11 @@ namespace EscolaUI.Tests.Helpers
             }
         }
 
-        public static int BrowserType
+        public static string BrowserType
         {
-            get { return Convert.ToInt32(ConfigurationManager.AppSettings["BrowserType"]); }
+            get { return ConfigurationManager.AppSettings["BrowserType"]; }
         }
     }
 
-    public enum BrowserType
-    {
-        Chrome = 1,
-        Firefox = 2
-    }
+    
 }
