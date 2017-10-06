@@ -16,15 +16,8 @@ namespace EscolaUI.Tests.Pages
                 return Driver.ObterTitulo();
             }
         }
-        /// <summary>
-        /// Base URL used for the UI tests.
-        /// </summary>
         protected string baseURL { get; set; }
 
-        /// <summary>
-        /// Default constructor.
-        /// Initializes page objectos within DOM.
-        /// </summary>
         public BasePage()
         {
             baseURL = ConfigurationHelper.SiteUrl;
@@ -53,9 +46,6 @@ namespace EscolaUI.Tests.Pages
             Driver.InicializarElementos(this);
             return this; 
         }
-
-        
-        
         public virtual BasePage ExecutarScript(string jsScript)
         {
             Driver.ExecutarScripts(jsScript);

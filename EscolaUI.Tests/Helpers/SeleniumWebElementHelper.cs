@@ -5,53 +5,76 @@ using System.Threading;
 
 namespace EscolaUI.Tests.Helpers
 {
-    public static class SeleniumWebElementHelper
+    public class SeleniumWebElementHelper
     {
-        public static string ObterTexto(this IWebElement element)
+        private readonly IWebElement  _elemento; 
+        public SeleniumWebElementHelper(IWebElement elemento)
         {
-            return element.Text;
+            _elemento = elemento; 
+        }
+        public string ObterTexto()
+        {
+            return _elemento.Text;
         }
 
-        public static string ObterValor(this IWebElement element)
+        public string ObterValor()
         {
-            return element.GetAttribute("value");
+            return _elemento.GetAttribute("value");
         }
 
-        public static string ObterTextoDropDownList(this IWebElement element)
+        public string ObterTextoDropDownList()
         {
-            return new SelectElement(element).AllSelectedOptions.SingleOrDefault().Text;
+            return new SelectElement(_elemento).AllSelectedOptions.SingleOrDefault().Text;
         }
 
-        public static void PreencherCampo(this IWebElement element, string value)
+        public SeleniumWebElementHelper PreencherCampo( string value)
         {
-            element.SendKeys(value);
+            _elemento.SendKeys(value);
+            return this;
         }
 
-        public static void PreencherCampo(this IWebElement element, long value)
+        public SeleniumWebElementHelper PreencherCampo(long value)
         {
-            SeleniumWebElementHelper.PreencherCampo(element, value.ToString());
+            return PreencherCampo(value.ToString());
         }
 
-        public static void PreencherCampoEAguardar(this IWebElement element, string value, int milliseconds = 3000)
+        public  SeleniumWebElementHelper PreencherCampoEAguardar(string value, int milliseconds = 3000)
         {
-            PreencherCampo(element, value);
+            PreencherCampo(value);
             Thread.Sleep(milliseconds);
+            return this;
         }
 
-        public static void Clicar(this IWebElement element)
+        public SeleniumWebElementHelper Clicar()
         {
-            element.Click();
+            _elemento.Click();
+            return this;
         }
 
-        public static void ClicarEAguardar(this IWebElement element, int milliseconds = 3000)
+        public SeleniumWebElementHelper ClicarEAguardar(int milliseconds = 3000)
         {
-            element.Click();
+            _elemento.Click();
             Thread.Sleep(milliseconds);
+            return this;
         }
 
-        public static void SelecionarItemDropDown(this IWebElement element, string value)
+        public SeleniumWebElementHelper SelecionarItemDropDown( string value)
         {
-            new SelectElement(element).SelectByText(value);
+            new SelectElement(_elemento).SelectByText(value);
+            return this;
+        }
+
+        public SeleniumWebElementHelper Limpar()
+        {
+            _elemento.Clear();
+            return this; 
+        }
+
+
+        public SeleniumWebElementHelper Submit()
+        {
+            _elemento.Submit();
+            return this;
         }
     }
 }

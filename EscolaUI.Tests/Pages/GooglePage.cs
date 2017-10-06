@@ -26,8 +26,8 @@ namespace EscolaUI.Tests.Pages
         /// <param name="text">The text to be searched.</param>
         public void Pesquisar(string texto)
         {
-            txtSearch.PreencherCampo(texto);
-            btnSearch.ClicarEAguardar();
+            //txtSearch.PreencherCampo(texto);
+            //btnSearch.ClicarEAguardar();
         }
 
         public override Uri ConstructUrl()

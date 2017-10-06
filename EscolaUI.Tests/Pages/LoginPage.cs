@@ -12,10 +12,27 @@ namespace EscolaUI.Tests.Pages
     public class LoginPage : BasePage 
     {
         [FindsBy(How = How.Id, Using = "Email")]
-        public IWebElement Email { get; set; }
+        private IWebElement _Email { get; set; }
 
         [FindsBy(How = How.Id, Using = "Password")]
-        public IWebElement Password { get; set; }
+        private IWebElement _Password { get; set; }
+
+        public SeleniumWebElementHelper Email
+        {
+            get
+            {
+                return new SeleniumWebElementHelper(_Email);
+            }
+        }
+
+        public SeleniumWebElementHelper Password 
+        {
+            get
+            {
+                return new SeleniumWebElementHelper(_Password);
+            }
+        }
+
 
 
         public LoginPage()  

@@ -35,8 +35,8 @@ namespace EscolaUI.Tests
             //Browser.InicializarElementos(page);
             //loginPage.Browser.PreencherTextBox("Email", "carlos@31");
             //loginPage.Browser.PreencherTextBox("Password", "123456");
-            page.Email.SendKeys("carlos@31");
-            page.Password.SendKeys("123456");
+            page.Email.PreencherCampo("carlos@31");
+            page.Password.PreencherCampo("123456");
             Assert.AreEqual(true, true);
         }
 
