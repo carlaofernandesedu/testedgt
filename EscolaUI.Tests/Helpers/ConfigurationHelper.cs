@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Firefox;
 using System.Configuration;
 using System.IO;
 
@@ -11,18 +6,21 @@ namespace EscolaUI.Tests.Helpers
 {
     public static class ConfigurationHelper
     {
-        public static int SegundosAguardandoCargaWebDriverWait
+        public static int TempodeEsperaCargaWebDriverWait
         {
             get { return 30; }
         }
-
-        public static int SegundosExecucaoScript
+        public static int TempodeEsperaExecucaoScript
         {
             get { return Convert.ToInt32(ConfigurationManager.AppSettings["SegundosExecucaoScript"]); }
         }
-        public static int SegundosExecucaoPagina
+        public static int TempodeEsperaExecucaoPagina
         {
             get { return Convert.ToInt32(ConfigurationManager.AppSettings["SegundosExecucaoPagina"]); }
+        }
+        public static string NomeDriver
+        {
+            get { return ConfigurationManager.AppSettings["BrowserType"]; }
         }
 
         public static string FirefoxDriver
@@ -33,6 +31,17 @@ namespace EscolaUI.Tests.Helpers
                 //var pathFirefox = Path.Combine(FolderPath, "Drivers");
                 var pathFirefox = ConfigurationManager.AppSettings["FirefoxDriver"]; ;
                 return pathFirefox;
+            }
+        }
+        public static string ChromeDrive
+        {
+            get
+            {
+                // return string.Format("{0}", ConfigurationManager.AppSettings["ChromeDrive"]);
+                //var pathChrome = Path.Combine(FolderPath, "Drivers");
+                //var pathChrome = Path.Combine(FolderPath);
+                var pathChrome = ConfigurationManager.AppSettings["ChromeDrive"];
+                return pathChrome;
             }
         }
 
@@ -46,23 +55,10 @@ namespace EscolaUI.Tests.Helpers
             get { return ConfigurationManager.AppSettings["LoginUrl"]; }
         }
 
-        public static string ChromeDrive
-        {
-            get
-            {
-                // return string.Format("{0}", ConfigurationManager.AppSettings["ChromeDrive"]);
-                //var pathChrome = Path.Combine(FolderPath, "Drivers");
-                //var pathChrome = Path.Combine(FolderPath);
-                var pathChrome = ConfigurationManager.AppSettings["ChromeDrive"];
-                return pathChrome;
-            }
-        }
-
         public static string FolderPath
         {
             get { return Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())); }
         }
-
         public static string FolderPicture
         {
             get
@@ -72,10 +68,6 @@ namespace EscolaUI.Tests.Helpers
             }
         }
 
-        public static string BrowserType
-        {
-            get { return ConfigurationManager.AppSettings["BrowserType"]; }
-        }
     }
 
     

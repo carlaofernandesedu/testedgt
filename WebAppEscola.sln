@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Escola.Tests", "Escola.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscolaUI.Tests", "EscolaUI.Tests\EscolaUI.Tests.csproj", "{0F082688-C36F-4CDD-BAF2-33AF78053A83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "br.procon.si.UI.Consumidor.Tests", "br.procon.si.UI.Consumidor.Tests\br.procon.si.UI.Consumidor.Tests.csproj", "{07917251-B772-4C85-8AB1-13208CDAAD59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{0F082688-C36F-4CDD-BAF2-33AF78053A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F082688-C36F-4CDD-BAF2-33AF78053A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F082688-C36F-4CDD-BAF2-33AF78053A83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07917251-B772-4C85-8AB1-13208CDAAD59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07917251-B772-4C85-8AB1-13208CDAAD59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07917251-B772-4C85-8AB1-13208CDAAD59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07917251-B772-4C85-8AB1-13208CDAAD59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

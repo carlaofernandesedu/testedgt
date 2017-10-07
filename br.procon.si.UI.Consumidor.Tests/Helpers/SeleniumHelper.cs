@@ -9,13 +9,13 @@ using System.Linq;
 using System.Configuration;
 using System.IO;
 using System.Threading;
-using EscolaUI.Tests.Pages;
+using br.procon.si.UI.Consumidor.Tests.Pages;
 
-namespace EscolaUI.Tests.Helpers
+namespace br.procon.si.UI.Consumidor.Tests.Helpers
 {
     public class SeleniumHelper : ISeleniumHelper
     {
-        //TODO: Revisar uso de conceito estatico 
+        //TODO: Revisar uso ao aplicar mecanismo estatico para instancia
         /*
         public static IWebDriver Cb;
         public WebDriverWait Wait;
@@ -27,14 +27,14 @@ namespace EscolaUI.Tests.Helpers
         
         public static SeleniumHelper Instance()
         {
+            //TODO: Revisar uso ao aplicar mecanismo estatico para instancia
             //return _instance ?? (_instance = new SeleniumHelper());
             return new SeleniumHelper();
         }
-
         protected SeleniumHelper()
         {
             Cb = FabricarDriver(ConfigurationHelper.NomeDriver);
-            Wait = new WebDriverWait(Cb, TimeSpan.FromSeconds(ConfigurationHelper.TempodeEsperaCargaWebDriverWait));
+            Wait = new WebDriverWait(Cb, TimeSpan.FromSeconds(ConfigurationHelper.TempoDeEsperaCargaWebDriverWait));
         }
 
         private static IWebDriver FabricarDriver(string driver)
@@ -53,13 +53,7 @@ namespace EscolaUI.Tests.Helpers
             }
             return retorno;
         }
-
-        public void InicializarElementos(object page)
-        {
-            PageFactory.InitElements(Cb, page);
-        }
-
-        public void AguardarCarregarPagina(int segundos)
+         public void AguardarCarregarPagina(int segundos)
         {
             //Cb.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(segundos));
             Cb.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(segundos);
@@ -70,6 +64,12 @@ namespace EscolaUI.Tests.Helpers
             //Cb.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(segundos));
             Cb.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(segundos);
         }
+
+        public void ExecutarScripts(string javascript)
+        {
+            ((IJavaScriptExecutor)Cb).ExecuteScript(javascript);
+        }
+
 
         public string ObterUrl()
         {
@@ -92,29 +92,31 @@ namespace EscolaUI.Tests.Helpers
             var link = Wait.Until(ExpectedConditions.ElementIsVisible(By.LinkText(linkText)));
             link.Click();
         }
-
         public void ClicarBotaoSite(string botaoId)
         {
             Wait.Until(ExpectedConditions.ElementIsVisible(By.Id(botaoId))).Click();
         }
-        public void PreencherTextBox(string idCampo, string valorCampo)
+
+        public void InicializarElementos(object pagina)
+        {
+            PageFactory.InitElements(Cb, pagina);
+        }
+        public void PreencherValorNoElemento(string idCampo, string valorCampo)
         {
             var campo = Wait.Until(ExpectedConditions.ElementIsVisible(By.Id(idCampo)));
             campo.SendKeys(valorCampo);
         }
-
-
-        public string ObterTextoPorClasse(string className)
+        public string ObterTextoDoElementoPorClasse(string className)
         {
             return Wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(className))).Text;
         }
 
-        public string ObterTextoPorId(string id)
+        public string ObterTextoDoElementoPorId(string id)
         {
             return Wait.Until(ExpectedConditions.ElementIsVisible(By.Id(id))).Text;
         }
 
-        public string ObterTextoPorXPath(string xpath)
+        public string ObterTextoDoElementoPorXPath(string xpath)
         {
             return Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(xpath))).Text;
         }
@@ -122,18 +124,18 @@ namespace EscolaUI.Tests.Helpers
         public  T ObterPagina<T>( bool limparCookies = false, bool maximizado = true)
             where T : BasePage, new()
         {
-            T page = new T();
+            T pagina = new T();
              
-            if (page.ConstructUrl() == null)
+            if (pagina.ObterPaginaUrl() == null)
             {
-                throw new InvalidOperationException("Unable to find URL for requested page.");
+                throw new InvalidOperationException("Não foi possivel encontrar a url da Pagina.");
             }
-            page.DefinirDriver(this);
+            pagina.DefinirDriver(this);
             LimparCookies(limparCookies);
-            NavegarPara(page.ConstructUrl().AbsoluteUri);
+            NavegarPara(pagina.ObterPaginaUrl().AbsoluteUri);
             Maximizar(maximizado);
-            page.InicializarElementos();
-            return page;
+            pagina.InicializarElementos();
+            return pagina;
         }
 
         public IEnumerable<IWebElement> ObterElementosPorClasse(string className)
@@ -151,15 +153,15 @@ namespace EscolaUI.Tests.Helpers
             return Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.Name(nome))).FirstOrDefault();
         }
 
-        public void ObterScreenShot(string nome)
+        public void CapturarTela(string nomeArquivo)
         {
             var screenshot = ((ITakesScreenshot)Cb).GetScreenshot();
-            SalvarScreenShot(screenshot, string.Format("{0}_" + nome + ".png", DateTime.Now.ToFileTime()));
+            SalvarScreenShot(screenshot, string.Format("{0}_" + nomeArquivo + ".png", DateTime.Now.ToFileTime()));
         }
 
         private static void SalvarScreenShot(Screenshot screenshot, string fileName)
         {
-            var pathFile = Path.Combine(ConfigurationHelper.FolderPicture, fileName);
+            var pathFile = Path.Combine(ConfigurationHelper.CaminhoPastaImagens, fileName);
             screenshot.SaveAsFile(pathFile, ScreenshotImageFormat.Png);
         }
 
@@ -175,11 +177,7 @@ namespace EscolaUI.Tests.Helpers
                 Cb.Manage().Window.Maximize();
         }
 
-        public void ExecutarScripts(string javascript)
-        {
-            ((IJavaScriptExecutor)Cb).ExecuteScript(javascript);
-        }
-
+ 
         public void LimparCookies(bool isOk = true)
         {
             if (isOk)
@@ -191,7 +189,7 @@ namespace EscolaUI.Tests.Helpers
             return Cb.Title;
         }
 
-        public void Esperar(int segundos)
+        public void EsperarProcessamento(int segundos)
         {
             Thread.Sleep(segundos/1000);
         }

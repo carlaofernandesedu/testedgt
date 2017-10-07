@@ -24,8 +24,8 @@ namespace EscolaUI.Tests
             //Driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
             //Driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(30));
             //Driver.Manage().Window.Maximize();
-            Driver.AguardarCarregarPagina(ConfigurationHelper.SegundosExecucaoPagina);
-            Driver.AguardarExecucaoScripts(ConfigurationHelper.SegundosExecucaoScript);
+            Driver.AguardarCarregarPagina(ConfigurationHelper.TempodeEsperaExecucaoPagina);
+            Driver.AguardarExecucaoScripts(ConfigurationHelper.TempodeEsperaExecucaoScript);
             //Driver.Maximizar();
         }
 

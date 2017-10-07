@@ -12,8 +12,8 @@ namespace EscolaUI.Tests
         public void SetupTest()
         {
             Browser = SeleniumHelper.Instance();
-            Browser.AguardarCarregarPagina(ConfigurationHelper.SegundosExecucaoPagina);
-            Browser.AguardarExecucaoScripts(ConfigurationHelper.SegundosExecucaoScript);
+            Browser.AguardarCarregarPagina(ConfigurationHelper.TempodeEsperaExecucaoPagina);
+            Browser.AguardarExecucaoScripts(ConfigurationHelper.TempodeEsperaExecucaoScript);
         }
 
         [TestCleanup]
