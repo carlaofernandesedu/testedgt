@@ -10,19 +10,21 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         {
             get { return 30; }
         }
+
         public static int TempoDeEsperaExecucaoScript
         {
             get { return Convert.ToInt32(ConfigurationManager.AppSettings["SegundosExecucaoScript"]); }
         }
+
         public static int TempoDeEsperaExecucaoPagina
         {
             get { return Convert.ToInt32(ConfigurationManager.AppSettings["SegundosExecucaoPagina"]); }
         }
+
         public static string NomeDriver
         {
             get { return ConfigurationManager.AppSettings["BrowserType"]; }
         }
-
 
         public static string CaminhoPastaFirefoxDriver
         {
@@ -34,6 +36,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
                 return pathFirefox;
             }
         }
+
         public static string CaminhoPastaChromeDrive
         {
             get
@@ -48,12 +51,12 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
 
         public static string SiteUrl
         {
-            get { return ConfigurationManager.AppSettings["SiteUrl"]; }
+            get { return ConfigurationManager.AppSettings[nameof(SiteUrl)]; }
         }
 
         public static string LoginUrl
         {
-            get { return ConfigurationManager.AppSettings["LoginUrl"]; }
+            get { return ConfigurationManager.AppSettings[nameof(LoginUrl)]; }
         }
 
         public static string CaminhoPastaApp
@@ -69,8 +72,5 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
                 return Path.Combine(CaminhoPastaApp, ConfigurationManager.AppSettings["FolderPicture"]);
             }
         }
-
     }
-
-    
 }

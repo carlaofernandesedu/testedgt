@@ -60,19 +60,34 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Base\BaseUITest.cs" />
     <Compile Include="Helpers\ConfigurationHelper.cs" />
     <Compile Include="Helpers\ISeleniumHelper.cs" />
+    <Compile Include="Helpers\ISeleniumWebElementHelper.cs" />
     <Compile Include="Helpers\SeleniumHelper.cs" />
     <Compile Include="Helpers\SeleniumWebElementHelper.cs" />
-    <Compile Include="Pages\BasePage.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Base\BasePage.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
+    <Compile Include="LoginPageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="NewFolder1\" />
+    <Analyzer Include="..\packages\codecracker.CSharp.1.0.3\analyzers\dotnet\cs\CodeCracker.Common.dll" />
+    <Analyzer Include="..\packages\codecracker.CSharp.1.0.3\analyzers\dotnet\cs\CodeCracker.CSharp.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="chromedriver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="geckodriver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

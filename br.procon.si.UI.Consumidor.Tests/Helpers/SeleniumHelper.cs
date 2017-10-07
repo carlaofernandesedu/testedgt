@@ -1,15 +1,14 @@
-﻿using OpenQA.Selenium;
+﻿using br.procon.si.UI.Consumidor.Tests.Base;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Threading;
-using br.procon.si.UI.Consumidor.Tests.Pages;
 
 namespace br.procon.si.UI.Consumidor.Tests.Helpers
 {
@@ -24,13 +23,14 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         */
         public IWebDriver Cb;
         public WebDriverWait Wait;
-        
+
         public static SeleniumHelper Instance()
         {
             //TODO: Revisar uso ao aplicar mecanismo estatico para instancia
             //return _instance ?? (_instance = new SeleniumHelper());
             return new SeleniumHelper();
         }
+
         protected SeleniumHelper()
         {
             Cb = FabricarDriver(ConfigurationHelper.NomeDriver);
@@ -46,6 +46,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
                     //retorno = new ChromeDriver(ConfigurationHelper.ChromeDrive);
                     retorno = new ChromeDriver();
                     break;
+
                 case "firefox":
                     //retorno = new FirefoxDriver(FirefoxDriverService.CreateDefaultService(ConfigurationHelper.FirefoxDriver));
                     retorno = new FirefoxDriver();
@@ -53,7 +54,8 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             }
             return retorno;
         }
-         public void AguardarCarregarPagina(int segundos)
+
+        public void AguardarCarregarPagina(int segundos)
         {
             //Cb.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(segundos));
             Cb.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(segundos);
@@ -69,7 +71,6 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         {
             ((IJavaScriptExecutor)Cb).ExecuteScript(javascript);
         }
-
 
         public string ObterUrl()
         {
@@ -92,6 +93,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             var link = Wait.Until(ExpectedConditions.ElementIsVisible(By.LinkText(linkText)));
             link.Click();
         }
+
         public void ClicarBotaoSite(string botaoId)
         {
             Wait.Until(ExpectedConditions.ElementIsVisible(By.Id(botaoId))).Click();
@@ -101,11 +103,14 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         {
             PageFactory.InitElements(Cb, pagina);
         }
-        public void PreencherValorNoElemento(string idCampo, string valorCampo)
+
+        public ISeleniumHelper PreencherValorNoElemento(string idCampo, string valorCampo)
         {
             var campo = Wait.Until(ExpectedConditions.ElementIsVisible(By.Id(idCampo)));
             campo.SendKeys(valorCampo);
+            return this;
         }
+
         public string ObterTextoDoElementoPorClasse(string className)
         {
             return Wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(className))).Text;
@@ -121,11 +126,11 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             return Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(xpath))).Text;
         }
 
-        public  T ObterPagina<T>( bool limparCookies = false, bool maximizado = true)
+        public T ObterPagina<T>(bool limparCookies = false, bool maximizado = true)
             where T : BasePage, new()
         {
-            T pagina = new T();
-             
+            var pagina = new T();
+
             if (pagina.ObterPaginaUrl() == null)
             {
                 throw new InvalidOperationException("Não foi possivel encontrar a url da Pagina.");
@@ -177,7 +182,6 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
                 Cb.Manage().Window.Maximize();
         }
 
- 
         public void LimparCookies(bool isOk = true)
         {
             if (isOk)
@@ -189,9 +193,11 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             return Cb.Title;
         }
 
-        public void EsperarProcessamento(int segundos)
+        public ISeleniumHelper EsperarProcessamento(int segundos)
         {
-            Thread.Sleep(segundos/1000);
+            if (segundos > 0)
+                Thread.Sleep(segundos / 1000);
+            return this;
         }
     }
 }

@@ -5,13 +5,15 @@ using System.Threading;
 
 namespace br.procon.si.UI.Consumidor.Tests.Helpers
 {
-    public class SeleniumWebElementHelper
+    public class SeleniumWebElementHelper : ISeleniumWebElementHelper
     {
-        private readonly IWebElement  _elemento; 
+        private readonly IWebElement _elemento;
+
         public SeleniumWebElementHelper(IWebElement elemento)
         {
-            _elemento = elemento; 
+            _elemento = elemento;
         }
+
         public string ObterTexto()
         {
             return _elemento.Text;
@@ -27,7 +29,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             return new SelectElement(_elemento).AllSelectedOptions.SingleOrDefault().Text;
         }
 
-        public SeleniumWebElementHelper PreencherCampo( string value)
+        public SeleniumWebElementHelper PreencherCampo(string value)
         {
             _elemento.SendKeys(value);
             return this;
@@ -38,7 +40,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             return PreencherCampo(value.ToString());
         }
 
-        public  SeleniumWebElementHelper PreencherCampoEAguardar(string value, int segundos = 3)
+        public SeleniumWebElementHelper PreencherCampoEAguardar(string value, int segundos = 3)
         {
             PreencherCampo(value);
             Thread.Sleep(segundos * 1000);
@@ -67,8 +69,9 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         public SeleniumWebElementHelper Limpar()
         {
             _elemento.Clear();
-            return this; 
+            return this;
         }
+
         public SeleniumWebElementHelper Submit()
         {
             _elemento.Submit();
