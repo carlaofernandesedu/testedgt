@@ -38,5 +38,11 @@ namespace br.procon.si.UI.Consumidor.Tests.Pages
         {
             return new Uri("http://consumidordes.prodesp.sp.gov.br/Login");
         }
+
+        public void Logar(string usuario, string senha)
+        {
+            Email.PreencherCampo(usuario);
+            Password.PreencherCampo(senha);
+        }
     }
 }

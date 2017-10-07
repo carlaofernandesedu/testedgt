@@ -1,16 +1,26 @@
-﻿using System;
+﻿using br.procon.si.UI.Consumidor.Tests.Pages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using br.procon.si.UI.Consumidor.Tests.Pages;
 
 namespace br.procon.si.UI.Consumidor.Tests
 {
     [TestClass]
     public class LoginPageTest : BaseUITest
     {
-        [TestMethod]
-        public void TestLogin()
+        private LoginPage page;
+
+        protected override void Preparar()
         {
-            var titulo = Browser.ObterPagina<LoginPage>().Titulo;
+            var page = Browser.ObterPagina<LoginPage>();
+        }
+
+        protected override void Executar()
+        {
+            // page.Logar();
+        }
+
+        [TestMethod]
+        public void LoginPage_Logar_CarregouPagina()
+        {
             Assert.IsTrue(true);
         }
     }

@@ -3,20 +3,28 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace br.procon.si.UI.Consumidor.Tests
 {
-    public class BaseUITest
+    public abstract class BaseUITest
     {
         protected SeleniumHelper Browser;
 
         [TestInitialize]
-        public void SetupTest()
+        public virtual void Inicializar()
         {
             Browser = SeleniumHelper.Instance();
             Browser.AguardarCarregarPagina(ConfigurationHelper.TempoDeEsperaExecucaoPagina);
             Browser.AguardarExecucaoScripts(ConfigurationHelper.TempoDeEsperaExecucaoScript);
+            Preparar();
+            Executar();
         }
 
+        protected virtual void Preparar()
+        {
+        }
+
+        protected abstract void Executar();
+
         [TestCleanup]
-        public void TestCleanupTest()
+        public virtual void TestCleanupTest()
         {
             try
             {
