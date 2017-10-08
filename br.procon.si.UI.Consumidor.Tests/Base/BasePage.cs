@@ -1,4 +1,5 @@
 ﻿using br.procon.si.UI.Consumidor.Tests.Helpers;
+using OpenQA.Selenium;
 using System;
 
 namespace br.procon.si.UI.Consumidor.Tests.Base
@@ -53,5 +54,6 @@ namespace br.procon.si.UI.Consumidor.Tests.Base
             Driver.ExecutarScripts(jsScript);
             return this;
         }
+
     }
 }

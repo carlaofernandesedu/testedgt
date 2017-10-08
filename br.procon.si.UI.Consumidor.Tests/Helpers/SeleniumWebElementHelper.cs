@@ -14,6 +14,11 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             _elemento = elemento;
         }
 
+        public static ISeleniumWebElementHelper Converter(IWebElement elemento)
+        {
+            return new SeleniumWebElementHelper(elemento);
+        }
+
         public string ObterTexto()
         {
             return _elemento.Text;
@@ -76,6 +81,11 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         {
             _elemento.Submit();
             return this;
+        }
+
+        public static ISeleniumWebElementHelper ConverterElemento(IWebElement elemento)
+        {
+            return SeleniumWebElementHelper.Converter(elemento);
         }
     }
 }

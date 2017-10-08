@@ -1,5 +1,6 @@
 ﻿using br.procon.si.UI.Consumidor.Tests.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace br.procon.si.UI.Consumidor.Tests
 {
@@ -13,15 +14,20 @@ namespace br.procon.si.UI.Consumidor.Tests
             Browser = SeleniumHelper.Instance();
             Browser.AguardarCarregarPagina(ConfigurationHelper.TempoDeEsperaExecucaoPagina);
             Browser.AguardarExecucaoScripts(ConfigurationHelper.TempoDeEsperaExecucaoScript);
-            Preparar();
-            Executar();
         }
 
-        protected virtual void Preparar()
+        public virtual T Executar<T>(Action arrange, Func<T> act)
+            where T : class
         {
+            arrange?.Invoke();
+            return act?.Invoke();
         }
 
-        protected abstract void Executar();
+        public virtual void Executar(Action arrange, Action act)
+        {
+            arrange?.Invoke();
+            act?.Invoke();
+        }
 
         [TestCleanup]
         public virtual void TestCleanupTest()

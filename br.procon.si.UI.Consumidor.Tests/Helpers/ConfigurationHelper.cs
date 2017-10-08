@@ -8,7 +8,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
     {
         public static int TempoDeEsperaCargaWebDriverWait
         {
-            get { return 30; }
+            get { return 15; }
         }
 
         public static int TempoDeEsperaExecucaoScript

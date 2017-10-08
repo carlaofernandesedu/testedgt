@@ -193,10 +193,10 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             return Cb.Title;
         }
 
-        public ISeleniumHelper EsperarProcessamento(int segundos)
+        public ISeleniumHelper EsperarProcessamento(int milisegundos)
         {
-            if (segundos > 0)
-                Thread.Sleep(segundos / 1000);
+            if (milisegundos > 0)
+                Thread.Sleep(milisegundos);
             return this;
         }
     }

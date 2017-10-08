@@ -6,22 +6,34 @@ namespace br.procon.si.UI.Consumidor.Tests
     [TestClass]
     public class LoginPageTest : BaseUITest
     {
+        #region Membros
         private LoginPage page;
-
-        protected override void Preparar()
+        #endregion
+        #region "Metodos de Suporte Reutilizacao procedimentos de (Arrange) e (Act)"
+        private void ObterPagina()
         {
-            var page = Browser.ObterPagina<LoginPage>();
+            page = Browser.ObterPagina<LoginPage>();
         }
 
-        protected override void Executar()
+        private void Logar()
         {
-            // page.Logar();
+            page.Logar("carlo31@gmail.com", "123456");
+        }
+        #endregion
+        #region "Metodos Validacao Teste"
+        [TestMethod]
+        public void LoginPage_FP_InformarDadosCorretos_RedirecionadoPaginaConsulta()
+        {
+            Executar(ObterPagina, Logar);
+            Assert.AreEqual(1, 1);
         }
 
         [TestMethod]
-        public void LoginPage_Logar_CarregouPagina()
+        public void LoginPage_FP_InformarUrlPagina_PaginaCarregada()
         {
-            Assert.IsTrue(true);
+            Executar(null, ObterPagina);
+            Assert.AreEqual("Autenticação - Sistema Integrado Procon", page.Titulo);
         }
+        #endregion
     }
 }
