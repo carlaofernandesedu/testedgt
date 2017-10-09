@@ -15,7 +15,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Pages
         private IWebElement _email;
         [FindsBy(How = How.Id, Using = nameof(Password))]
         private IWebElement _password;
-        [FindsBy(How = How.ClassName, Using = "btn btn - success")]
+        [FindsBy(How = How.CssSelector, Using = "button.btn.btn-success")]
         private IWebElement _btnSubmit;
 
         #endregion "Membros Selenium"
@@ -42,7 +42,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Pages
         {
             Email.PreencherCampo(usuario);
             Password.PreencherCampo(senha);
-            Driver.EsperarProcessamento(1000);
+            BtnSubmit.ClicarEAguardar(5000);
             //ConverterElemento(_btnSubmit).Clicar();
         }
     }

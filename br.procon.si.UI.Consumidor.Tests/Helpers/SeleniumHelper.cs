@@ -158,6 +158,11 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             return Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.Name(nome))).FirstOrDefault();
         }
 
+        public IWebElement ObterElementoPorCssSelector(string cssSelector)
+        {
+            return Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector(cssSelector))).FirstOrDefault();
+        }
+
         public void CapturarTela(string nomeArquivo)
         {
             var screenshot = ((ITakesScreenshot)Cb).GetScreenshot();

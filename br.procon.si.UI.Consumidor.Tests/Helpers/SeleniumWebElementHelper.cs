@@ -45,10 +45,11 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             return PreencherCampo(value.ToString());
         }
 
-        public SeleniumWebElementHelper PreencherCampoEAguardar(string value, int segundos = 3)
+        public SeleniumWebElementHelper PreencherCampoEAguardar(string value, int milisegundos = 3000)
         {
             PreencherCampo(value);
-            Thread.Sleep(segundos * 1000);
+            if (milisegundos > 0)
+                Thread.Sleep(milisegundos);
             return this;
         }
 
@@ -58,10 +59,11 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             return this;
         }
 
-        public SeleniumWebElementHelper ClicarEAguardar(int segundos = 3000)
+        public SeleniumWebElementHelper ClicarEAguardar(int miliSegundos = 3000)
         {
             _elemento.Click();
-            Thread.Sleep(segundos * 1000);
+            if (miliSegundos > 0)
+                Thread.Sleep(miliSegundos);
             return this;
         }
 

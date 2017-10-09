@@ -48,6 +48,8 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
 
         IWebElement ObterElementoPorNome(string nome);
 
+        IWebElement ObterElementoPorCssSelector(string cssSelector);
+
         IEnumerable<IWebElement> ObterElementosPorClasse(string className);
 
         T ObterPagina<T>(bool limparCookies = true, bool maximizado = true) where T : BasePage, new();

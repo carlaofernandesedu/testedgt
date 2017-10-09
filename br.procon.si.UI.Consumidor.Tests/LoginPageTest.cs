@@ -1,4 +1,5 @@
-﻿using br.procon.si.UI.Consumidor.Tests.Pages;
+﻿using br.procon.si.UI.Consumidor.Tests.Helpers;
+using br.procon.si.UI.Consumidor.Tests.Pages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace br.procon.si.UI.Consumidor.Tests
@@ -8,6 +9,8 @@ namespace br.procon.si.UI.Consumidor.Tests
     {
         #region Membros
         private LoginPage page;
+        private string email;
+        private string password;
         #endregion
         #region "Metodos de Suporte Reutilizacao procedimentos de (Arrange) e (Act)"
         private void ObterPagina()
@@ -15,17 +18,25 @@ namespace br.procon.si.UI.Consumidor.Tests
             page = Browser.ObterPagina<LoginPage>();
         }
 
+        private void PrepararAcessoDadosCorretos()
+        {
+            ObterPagina();
+            email = "carlos21@gmail.com";
+            password = "123456";
+        }
+
         private void Logar()
         {
-            page.Logar("carlo31@gmail.com", "123456");
+            page.Logar(email,password);
         }
         #endregion
         #region "Metodos Validacao Teste"
         [TestMethod]
         public void LoginPage_FP_InformarDadosCorretos_RedirecionadoPaginaConsulta()
         {
-            Executar(ObterPagina, Logar);
-            Assert.AreEqual(1, 1);
+            Executar(PrepararAcessoDadosCorretos, Logar);
+            var url = ConfigurationHelper.SiteUrl + "/atendimentoconsumidor";
+            Assert.AreEqual(url, Browser.ObterUrl());
         }
 
         [TestMethod]
