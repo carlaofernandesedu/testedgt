@@ -137,7 +137,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             }
             pagina.DefinirDriver(this);
             LimparCookies(limparCookies);
-            NavegarPara(pagina.ObterPaginaUrl().AbsoluteUri);
+            NavegarPara(pagina.ObterPaginaUrl());
             Maximizar(maximizado);
             pagina.InicializarElementos();
             return pagina;

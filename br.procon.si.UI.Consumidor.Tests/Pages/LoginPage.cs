@@ -9,11 +9,14 @@ namespace br.procon.si.UI.Consumidor.Tests.Pages
 {
     public class LoginPage : BasePage
     {
+        #region "Constantes"
+        private const int TempoEsperaLogin = 3000;
+        #endregion
         #region "Membros Selenium"
 
-        [FindsBy(How = How.Id, Using = nameof(Email))]
+        [FindsBy(How = How.Id, Using = "Email")]
         private IWebElement _email;
-        [FindsBy(How = How.Id, Using = nameof(Password))]
+        [FindsBy(How = How.Id, Using = "Password")]
         private IWebElement _password;
         [FindsBy(How = How.CssSelector, Using = "button.btn.btn-success")]
         private IWebElement _btnSubmit;
@@ -29,21 +32,19 @@ namespace br.procon.si.UI.Consumidor.Tests.Pages
         #endregion "Atributos Selenium Convertidos"
 
         public LoginPage()
-
         {
         }
 
-        public override Uri ObterPaginaUrl()
+        public override string ObterPaginaUrl()
         {
-            return new Uri("http://consumidor.homologacao.sp.gov.br/Login");
+            return new Uri(ConfigurationHelper.SiteUrl + "/login").AbsoluteUri;
         }
 
         public void Logar(string usuario, string senha)
         {
             Email.PreencherCampo(usuario);
             Password.PreencherCampo(senha);
-            BtnSubmit.ClicarEAguardar(5000);
-            //ConverterElemento(_btnSubmit).Clicar();
+            BtnSubmit.ClicarEAguardar(TempoEsperaLogin);
         }
     }
 }

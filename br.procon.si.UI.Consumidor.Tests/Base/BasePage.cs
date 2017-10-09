@@ -8,7 +8,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Base
     {
         protected ISeleniumHelper Driver { get; set; }
 
-        public abstract Uri ObterPaginaUrl();
+        public abstract string ObterPaginaUrl();
 
         public string Titulo
         {

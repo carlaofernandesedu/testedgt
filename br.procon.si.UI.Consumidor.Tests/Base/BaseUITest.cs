@@ -8,6 +8,8 @@ namespace br.procon.si.UI.Consumidor.Tests
     {
         protected SeleniumHelper Browser;
 
+        public TestContext TestContext { get; set; }
+
         [TestInitialize]
         public virtual void Inicializar()
         {
@@ -16,16 +18,16 @@ namespace br.procon.si.UI.Consumidor.Tests
             Browser.AguardarExecucaoScripts(ConfigurationHelper.TempoDeEsperaExecucaoScript);
         }
 
-        public virtual T Executar<T>(Action arrange, Func<T> act)
+        public virtual T Executar<T>(Action<string> arrange, Func<T> act, string testkey = "")
             where T : class
         {
-            arrange?.Invoke();
+            arrange?.Invoke(testkey);
             return act?.Invoke();
         }
 
-        public virtual void Executar(Action arrange, Action act)
+        public virtual void Executar(Action<string> arrange, Action act, string testkey = "")
         {
-            arrange?.Invoke();
+            arrange?.Invoke(testkey);
             act?.Invoke();
         }
 

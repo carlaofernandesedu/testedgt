@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 
@@ -54,10 +55,6 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             get { return ConfigurationManager.AppSettings[nameof(SiteUrl)]; }
         }
 
-        public static string LoginUrl
-        {
-            get { return ConfigurationManager.AppSettings[nameof(LoginUrl)]; }
-        }
 
         public static string CaminhoPastaApp
         {
