@@ -43,6 +43,12 @@ namespace br.procon.si.UI.Consumidor.Tests.Base
             return this;
         }
 
+        public virtual BasePage CapturarTela()
+        {
+            Driver.CapturarTela(this.GetType().Name);
+            return this;
+        }
+
         public virtual BasePage InicializarElementos()
         {
             Driver.InicializarElementos(this);

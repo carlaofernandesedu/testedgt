@@ -16,7 +16,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
 
         public static ISeleniumWebElementHelper Converter(IWebElement elemento)
         {
-            return new SeleniumWebElementHelper(elemento);
+            return  elemento != null ? new SeleniumWebElementHelper(elemento) : null;
         }
 
         public string ObterTexto()

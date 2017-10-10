@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using static br.procon.si.UI.Consumidor.Tests.Helpers.SeleniumWebElementHelper;
 
 namespace br.procon.si.UI.Consumidor.Tests.Helpers
 {
@@ -22,7 +23,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         private SeleniumHelper _instance;
         */
         public IWebDriver Cb;
-        public WebDriverWait Wait;
+        private WebDriverWait _wait;
 
         public static SeleniumHelper Instance()
         {
@@ -34,7 +35,15 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         protected SeleniumHelper()
         {
             Cb = FabricarDriver(ConfigurationHelper.NomeDriver);
-            Wait = new WebDriverWait(Cb, TimeSpan.FromSeconds(ConfigurationHelper.TempoDeEsperaCargaWebDriverWait));
+            //Wait = new WebDriverWait(Cb, TimeSpan.FromSeconds(ConfigurationHelper.TempoDeEsperaCargaWebDriverWait));
+        }
+
+        public WebDriverWait Wait
+        {
+            get
+            {
+                return _wait ?? (_wait = new WebDriverWait(Cb, TimeSpan.FromSeconds(ConfigurationHelper.TempoDeEsperaCargaWebDriverWait)));
+            }
         }
 
         private static IWebDriver FabricarDriver(string driver)
@@ -148,19 +157,22 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             return Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.ClassName(className)));
         }
 
-        public IWebElement ObterElementoPorId(string id)
+        public ISeleniumWebElementHelper ObterElementoPorId(string id)
         {
-            return Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.Id(id))).FirstOrDefault();
+            var elemento =  Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.Id(id))).FirstOrDefault();
+            return ConverterElemento(elemento);
         }
 
-        public IWebElement ObterElementoPorNome(string nome)
+        public ISeleniumWebElementHelper ObterElementoPorNome(string nome)
         {
-            return Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.Name(nome))).FirstOrDefault();
+            var elemento =  Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.Name(nome))).FirstOrDefault();
+            return ConverterElemento(elemento);
         }
 
-        public IWebElement ObterElementoPorCssSelector(string cssSelector)
+        public ISeleniumWebElementHelper ObterElementoPorCssSelector(string cssSelector)
         {
-            return Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector(cssSelector))).FirstOrDefault();
+            var elemento = Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector(cssSelector))).FirstOrDefault();
+            return ConverterElemento(elemento);
         }
 
         public void CapturarTela(string nomeArquivo)

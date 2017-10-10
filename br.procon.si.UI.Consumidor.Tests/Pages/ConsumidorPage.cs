@@ -1,4 +1,5 @@
 ﻿using br.procon.si.UI.Consumidor.Tests.Base;
+using br.procon.si.UI.Consumidor.Tests.DTO;
 using br.procon.si.UI.Consumidor.Tests.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -10,18 +11,24 @@ namespace br.procon.si.UI.Consumidor.Tests.Pages
     public class ConsumidorPage : BasePage
     {
         #region "Constantes"
-        private const int TempoEsperaLogin = 3000;
-        #endregion
 
-        #region "Membros Selenium"
+        private const int tempoEspera = 3000;
+        private const string paginaUrl = "/consumidor/criar";
+
+        #endregion "Constantes"
+
+        #region "Elementos Pagina por Selenium"
+
         [FindsBy(How = How.Id, Using = "IdMunicipio")]
         private IWebElement _idMunicipio;
+
         [FindsBy(How = How.Id, Using = "Nome")]
         private IWebElement _nome;
+
         [FindsBy(How = How.Id, Using = "Sexo")]
         private IWebElement _sexo;
 
-        #endregion "Membros Selenium"
+        #endregion "Elementos Pagina por Selenium"
 
         #region "Atributos Selenium Convertidos"
 
@@ -30,14 +37,15 @@ namespace br.procon.si.UI.Consumidor.Tests.Pages
         public ISeleniumWebElementHelper Sexo { get { return ConverterElemento(_sexo); } private set { } }
 
         #endregion "Atributos Selenium Convertidos"
+
         public override string ObterPaginaUrl()
         {
-            return new Uri(ConfigurationHelper.SiteUrl + "/consumidor/criar").AbsoluteUri;
+            return new Uri(ConfigurationHelper.SiteUrl + paginaUrl).AbsoluteUri;
         }
 
-        public void Salvar(object dto)
+        public void Salvar(ConsumidorDTO dto)
         {
-
+            Nome.PreencherCampo(dto.Nome);
         }
     }
 }

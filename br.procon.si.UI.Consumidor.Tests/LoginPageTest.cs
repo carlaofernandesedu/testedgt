@@ -8,6 +8,12 @@ namespace br.procon.si.UI.Consumidor.Tests
     [TestClass]
     public class LoginPageTest : BaseUITest
     {
+        #region Constantes
+
+        private const string tituloPagina = "Autenticação - Sistema Integrado Procon";
+
+        #endregion Constantes
+
         #region Membros
 
         private LoginPage page;
@@ -47,7 +53,7 @@ namespace br.procon.si.UI.Consumidor.Tests
         public void LoginPage_FP_InformarUrlPagina_PaginaCarregada()
         {
             Executar(null, ObterPagina);
-            Assert.AreEqual("Autenticação - Sistema Integrado Procon", page.Titulo);
+            Assert.AreEqual(tituloPagina, page.Titulo);
         }
 
         #endregion "Metodos Validacao Teste"

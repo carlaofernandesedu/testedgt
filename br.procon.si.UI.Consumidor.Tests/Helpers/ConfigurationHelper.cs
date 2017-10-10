@@ -30,7 +30,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         {
             get
             {
-                var pathFirefox = ConfigurationManager.AppSettings["FirefoxDriver"]; ;
+                var pathFirefox = ConfigurationManager.AppSettings[nameof(CaminhoPastaFirefoxDriver)]; ;
                 return pathFirefox;
             }
         }
@@ -40,7 +40,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             get
             {
                 // return string.Format("{0}", ConfigurationManager.AppSettings["ChromeDrive"]);
-                var pathChrome = ConfigurationManager.AppSettings["ChromeDrive"];
+                var pathChrome = ConfigurationManager.AppSettings[nameof(CaminhoPastaChromeDrive)];
                 return pathChrome;
             }
         }
@@ -60,7 +60,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             get
             {
                 // return string.Format("{0}{1}", FolderPath, ConfigurationManager.AppSettings["FolderPicture"]);
-                return Path.Combine(CaminhoPastaApp, ConfigurationManager.AppSettings["FolderPicture"]);
+                return Path.Combine(ConfigurationManager.AppSettings[nameof(CaminhoPastaImagens)]);
             }
         }
     }

@@ -10,18 +10,24 @@ namespace br.procon.si.UI.Consumidor.Tests.Pages
     public class LoginPage : BasePage
     {
         #region "Constantes"
-        private const int TempoEsperaLogin = 3000;
-        #endregion
-        #region "Membros Selenium"
+
+        private const int tempoEspera = 3000;
+        private const string paginaUrl = "/login";
+
+        #endregion "Constantes"
+
+        #region "Elementos Pagina por Selenium"
 
         [FindsBy(How = How.Id, Using = "Email")]
         private IWebElement _email;
+
         [FindsBy(How = How.Id, Using = "Password")]
         private IWebElement _password;
+
         [FindsBy(How = How.CssSelector, Using = "button.btn.btn-success")]
         private IWebElement _btnSubmit;
 
-        #endregion "Membros Selenium"
+        #endregion "Elementos Pagina por Selenium"
 
         #region "Atributos Selenium Convertidos"
 
@@ -37,14 +43,15 @@ namespace br.procon.si.UI.Consumidor.Tests.Pages
 
         public override string ObterPaginaUrl()
         {
-            return new Uri(ConfigurationHelper.SiteUrl + "/login").AbsoluteUri;
+            return new Uri(ConfigurationHelper.SiteUrl + paginaUrl).AbsoluteUri;
         }
 
         public void Logar(string usuario, string senha)
         {
             Email.PreencherCampo(usuario);
             Password.PreencherCampo(senha);
-            BtnSubmit.ClicarEAguardar(TempoEsperaLogin);
+            //CapturarTela();
+            BtnSubmit.ClicarEAguardar(tempoEspera);
         }
     }
 }

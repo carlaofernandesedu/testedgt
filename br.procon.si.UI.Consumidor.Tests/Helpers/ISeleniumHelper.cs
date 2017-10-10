@@ -44,11 +44,11 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
 
         bool ValidarConteudoUrl(string conteudo);
 
-        IWebElement ObterElementoPorId(string id);
+        ISeleniumWebElementHelper ObterElementoPorId(string id);
 
-        IWebElement ObterElementoPorNome(string nome);
+        ISeleniumWebElementHelper ObterElementoPorNome(string nome);
 
-        IWebElement ObterElementoPorCssSelector(string cssSelector);
+        ISeleniumWebElementHelper ObterElementoPorCssSelector(string cssSelector);
 
         IEnumerable<IWebElement> ObterElementosPorClasse(string className);
 
