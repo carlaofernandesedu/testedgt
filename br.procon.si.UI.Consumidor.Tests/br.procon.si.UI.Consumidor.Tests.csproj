@@ -78,6 +78,7 @@
     <Compile Include="Base\BasePage.cs" />
     <Compile Include="Pages\AtendimentoConsumidorPage.cs" />
     <Compile Include="Pages\ConsumidorPage.cs" />
+    <Compile Include="Pages\GeradorCpfPage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="LoginPageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
