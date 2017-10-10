@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 
@@ -31,8 +30,6 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         {
             get
             {
-                // return string.Format("{0}", ConfigurationManager.AppSettings["FirefoxDriver"]);
-                //var pathFirefox = Path.Combine(FolderPath, "Drivers");
                 var pathFirefox = ConfigurationManager.AppSettings["FirefoxDriver"]; ;
                 return pathFirefox;
             }
@@ -43,8 +40,6 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             get
             {
                 // return string.Format("{0}", ConfigurationManager.AppSettings["ChromeDrive"]);
-                //var pathChrome = Path.Combine(FolderPath, "Drivers");
-                //var pathChrome = Path.Combine(FolderPath);
                 var pathChrome = ConfigurationManager.AppSettings["ChromeDrive"];
                 return pathChrome;
             }
@@ -54,7 +49,6 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         {
             get { return ConfigurationManager.AppSettings[nameof(SiteUrl)]; }
         }
-
 
         public static string CaminhoPastaApp
         {

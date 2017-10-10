@@ -1,4 +1,6 @@
-﻿using br.procon.si.UI.Consumidor.Tests.Pages;
+﻿using br.procon.si.UI.Consumidor.Tests.DTO;
+using br.procon.si.UI.Consumidor.Tests.Helpers;
+using br.procon.si.UI.Consumidor.Tests.Pages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace br.procon.si.UI.Consumidor.Tests
@@ -9,35 +11,25 @@ namespace br.procon.si.UI.Consumidor.Tests
         #region Membros
 
         private LoginPage page;
-        private string email;
-        private string password;
-
-        private enum colunasCsv
-        {
-            testkey,
-            email,
-            senha
-        };
+        private LoginDTO dto;
 
         #endregion Membros
 
         #region "Metodos de Suporte Reutilizacao procedimentos de (Arrange) e (Act)"
+
+        public override void Preparar(string testkey)
+        {
+            dto = DTOHelper.ConverterPara<LoginDTO>(TestContext.DataRow);
+        }
 
         private void ObterPagina()
         {
             page = Browser.ObterPagina<LoginPage>();
         }
 
-        private void PrepararDados(string testkey)
-        {
-            ObterPagina();
-            email = TestContext.DataRow[(int)colunasCsv.email].ToString();
-            password = TestContext.DataRow[(int)colunasCsv.senha].ToString();
-        }
-
         private void Logar()
         {
-            page.Logar(email, password);
+            Browser.ObterPagina<LoginPage>().Logar(dto.Email, dto.Senha);
         }
 
         #endregion "Metodos de Suporte Reutilizacao procedimentos de (Arrange) e (Act)"
@@ -47,7 +39,7 @@ namespace br.procon.si.UI.Consumidor.Tests
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\dataloginpagefp001.csv", "dataloginpagefp001#csv", DataAccessMethod.Sequential), TestCategory("FP001"), TestMethod]
         public void LoginPage_FP_InformarDadosCorretos_RedirecionadoPaginaConsulta()
         {
-            Executar(PrepararDados, Logar);
+            Executar(Preparar, Logar);
             Assert.AreEqual(new AtendimentoConsumidorPage().ObterPaginaUrl().ToLower(), Browser.ObterUrl().ToLower());
         }
 

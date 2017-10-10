@@ -18,6 +18,8 @@ namespace br.procon.si.UI.Consumidor.Tests
             Browser.AguardarExecucaoScripts(ConfigurationHelper.TempoDeEsperaExecucaoScript);
         }
 
+        public abstract void Preparar(string testkey);
+
         public virtual T Executar<T>(Action<string> arrange, Func<T> act, string testkey = "")
             where T : class
         {
