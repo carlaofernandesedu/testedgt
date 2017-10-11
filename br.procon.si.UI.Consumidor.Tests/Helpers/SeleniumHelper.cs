@@ -159,14 +159,19 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
 
         public ISeleniumWebElementHelper ObterElementoPorId(string id)
         {
-            var elemento =  Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.Id(id))).FirstOrDefault();
+            var elemento = Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.Id(id))).FirstOrDefault();
             return ConverterElemento(elemento);
         }
 
         public ISeleniumWebElementHelper ObterElementoPorNome(string nome)
         {
-            var elemento =  Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.Name(nome))).FirstOrDefault();
+            var elemento = Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.Name(nome))).FirstOrDefault();
             return ConverterElemento(elemento);
+        }
+
+        public List<ISeleniumWebElementHelper> ObterElementosPorNome(string nome)
+        {
+            return ConverterElementos(Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.Name(nome))).ToList());
         }
 
         public ISeleniumWebElementHelper ObterElementoPorCssSelector(string cssSelector)
@@ -210,11 +215,21 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             return Cb.Title;
         }
 
-        public ISeleniumHelper EsperarProcessamento(int milisegundos)
+        public ISeleniumHelper Aguardar(int milisegundos)
         {
             if (milisegundos > 0)
                 Thread.Sleep(milisegundos);
             return this;
+        }
+
+        public void ObterFocoNaPagina()
+        {
+            ExecutarScripts("window.focus();");
+        }
+
+        public void ObterFocoNoElementoPorId(string id)
+        {
+            ExecutarScripts("document.getElementById('" + id + "').focus();");
         }
     }
 }

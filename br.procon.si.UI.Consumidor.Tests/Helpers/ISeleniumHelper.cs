@@ -26,7 +26,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
 
         void Fechar();
 
-        ISeleniumHelper EsperarProcessamento(int segundos);
+        ISeleniumHelper Aguardar(int segundos);
 
         void InicializarElementos(object pagina);
 
@@ -47,10 +47,15 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         ISeleniumWebElementHelper ObterElementoPorId(string id);
 
         ISeleniumWebElementHelper ObterElementoPorNome(string nome);
+        List<ISeleniumWebElementHelper> ObterElementosPorNome(string nome);
 
         ISeleniumWebElementHelper ObterElementoPorCssSelector(string cssSelector);
 
         IEnumerable<IWebElement> ObterElementosPorClasse(string className);
+
+        void ObterFocoNaPagina();
+
+        void ObterFocoNoElementoPorId(string id);
 
         T ObterPagina<T>(bool limparCookies = true, bool maximizado = true) where T : BasePage, new();
     }

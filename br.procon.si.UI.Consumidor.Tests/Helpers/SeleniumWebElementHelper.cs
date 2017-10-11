@@ -2,6 +2,8 @@
 using OpenQA.Selenium.Support.UI;
 using System.Linq;
 using System.Threading;
+using System;
+using System.Collections.Generic;
 
 namespace br.procon.si.UI.Consumidor.Tests.Helpers
 {
@@ -48,8 +50,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         public SeleniumWebElementHelper PreencherCampoEAguardar(string value, int milisegundos = 3000)
         {
             PreencherCampo(value);
-            if (milisegundos > 0)
-                Thread.Sleep(milisegundos);
+            Aguardar(milisegundos);
             return this;
         }
 
@@ -62,8 +63,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         public SeleniumWebElementHelper ClicarEAguardar(int miliSegundos = 3000)
         {
             _elemento.Click();
-            if (miliSegundos > 0)
-                Thread.Sleep(miliSegundos);
+            Aguardar(miliSegundos);
             return this;
         }
 
@@ -89,5 +89,24 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         {
             return SeleniumWebElementHelper.Converter(elemento);
         }
+
+        public static List<ISeleniumWebElementHelper> ConverterElementos(List<IWebElement> elementos)
+        {
+            List<ISeleniumWebElementHelper> lista = null;
+            if (elementos != null)
+            {
+                lista = new List<ISeleniumWebElementHelper>();
+                elementos.ForEach(item => lista.Add(SeleniumWebElementHelper.ConverterElemento(item)));
+            }
+            return lista;
+        }
+
+        public SeleniumWebElementHelper Aguardar(int milisegundos)
+        {
+            if (milisegundos > 0)
+                Thread.Sleep(milisegundos);
+            return this;
+        }
+        
     }
 }

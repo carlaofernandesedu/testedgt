@@ -16,24 +16,26 @@ namespace br.procon.si.UI.Consumidor.Tests
     {
         #region Membros 
         private ConsumidorDTO dto;
-        private string Cpf;
+        private string NovoCpf;
         #endregion
         #region "Metodos de Suporte Reutilizacao procedimentos de (Arrange) e (Act)"
         public override void Preparar(string testkey)
         {
+            GerarCpf();
             dto = DTOHelper.ConverterPara<ConsumidorDTO>(TestContext.DataRow);
+            dto.CPF = NovoCpf;
         }
 
 
         private void GerarCpf()
         {
-           Cpf  = Browser.ObterPagina<GeradorCpfPage>().GerarCPF();
+           NovoCpf  = Browser.ObterPagina<GeradorCpfPage>().GerarCPF();
         }
 
         private void Salvar()
         {
             Browser.ObterPagina<LoginPage>().Logar(dto.Email, dto.Senha);
-            Browser.ObterPagina<ConsumidorPage>();
+            Browser.ObterPagina<ConsumidorPage>().Salvar(dto);
         }
         #endregion
 
@@ -49,7 +51,7 @@ namespace br.procon.si.UI.Consumidor.Tests
         public void GeradorCpf_FP_ObterNovoCpf_RetornadoNovoCPF()
         {
             Executar(null, GerarCpf);
-            Assert.IsFalse(String.IsNullOrEmpty(Cpf));
+            Assert.IsFalse(String.IsNullOrEmpty(NovoCpf));
         }
 
         

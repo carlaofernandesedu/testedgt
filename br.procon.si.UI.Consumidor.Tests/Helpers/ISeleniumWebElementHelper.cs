@@ -12,17 +12,19 @@
 
         SeleniumWebElementHelper PreencherCampo(long value);
 
-        SeleniumWebElementHelper PreencherCampoEAguardar(string value, int segundos = 3);
+        SeleniumWebElementHelper PreencherCampoEAguardar(string value, int milisegundos = 3000);
 
         SeleniumWebElementHelper Clicar();
 
-        SeleniumWebElementHelper ClicarEAguardar(int segundos = 3000);
+        SeleniumWebElementHelper ClicarEAguardar(int milisegundos = 3000);
 
         SeleniumWebElementHelper SelecionarItemDropDown(string value);
 
         SeleniumWebElementHelper Limpar();
 
         SeleniumWebElementHelper Submit();
+
+        SeleniumWebElementHelper Aguardar(int milisegundos);
 
     }
 }
