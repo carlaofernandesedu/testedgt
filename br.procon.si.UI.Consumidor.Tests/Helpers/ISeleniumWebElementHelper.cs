@@ -25,6 +25,5 @@
         SeleniumWebElementHelper Submit();
 
         SeleniumWebElementHelper Aguardar(int milisegundos);
-
     }
 }

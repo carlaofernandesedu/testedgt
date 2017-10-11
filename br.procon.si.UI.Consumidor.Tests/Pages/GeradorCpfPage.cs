@@ -1,5 +1,4 @@
 ﻿using br.procon.si.UI.Consumidor.Tests.Base;
-using br.procon.si.UI.Consumidor.Tests.DTO;
 using br.procon.si.UI.Consumidor.Tests.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;

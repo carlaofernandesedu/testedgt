@@ -6,6 +6,7 @@ namespace br.procon.si.UI.Consumidor.Tests.DTO
     public sealed class Coluna : Attribute
     {
         private readonly string coluna;
+
         public Coluna(string nome)
         {
             this.coluna = nome;

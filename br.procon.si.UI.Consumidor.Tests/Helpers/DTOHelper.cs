@@ -1,11 +1,7 @@
 ﻿using br.procon.si.UI.Consumidor.Tests.DTO;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace br.procon.si.UI.Consumidor.Tests.Helpers
 {
@@ -19,7 +15,6 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
             {
                 if (prop.CanWrite)
                 {
-
                     var attributes = prop.GetCustomAttributes(typeof(Coluna), true);
                     var columnName = attributes.Length > 0 ? ((Coluna)attributes[0]).Nome : prop.Name;
                     if (registro.Table.Columns.Contains(columnName))
@@ -34,9 +29,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
                                 prop.SetValue(dto, Convert.ToDateTime(registro[columnName]), null);
                             else
                                 prop.SetValue(dto, registro[columnName].ToString(), null);
-
                         }
-
                     }
                 }
             }

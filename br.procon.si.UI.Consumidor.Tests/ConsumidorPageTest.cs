@@ -1,10 +1,8 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using br.procon.si.UI.Consumidor.Tests.DTO;
+﻿using br.procon.si.UI.Consumidor.Tests.DTO;
 using br.procon.si.UI.Consumidor.Tests.Helpers;
 using br.procon.si.UI.Consumidor.Tests.Pages;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace br.procon.si.UI.Consumidor.Tests
 {
@@ -14,11 +12,15 @@ namespace br.procon.si.UI.Consumidor.Tests
     [TestClass]
     public class ConsumidorPageTest : BaseUITest
     {
-        #region Membros 
+        #region Membros
+
         private ConsumidorDTO dto;
         private string NovoCpf;
-        #endregion
+
+        #endregion Membros
+
         #region "Metodos de Suporte Reutilizacao procedimentos de (Arrange) e (Act)"
+
         public override void Preparar(string testkey)
         {
             GerarCpf();
@@ -26,10 +28,9 @@ namespace br.procon.si.UI.Consumidor.Tests
             dto.CPF = NovoCpf;
         }
 
-
         private void GerarCpf()
         {
-           NovoCpf  = Browser.ObterPagina<GeradorCpfPage>().GerarCPF();
+            NovoCpf = Browser.ObterPagina<GeradorCpfPage>().GerarCPF();
         }
 
         private void Salvar()
@@ -37,14 +38,16 @@ namespace br.procon.si.UI.Consumidor.Tests
             Browser.ObterPagina<LoginPage>().Logar(dto.Email, dto.Senha);
             Browser.ObterPagina<ConsumidorPage>().Salvar(dto);
         }
-        #endregion
 
-        #region  "Metodos Validacao Teste"
+        #endregion "Metodos de Suporte Reutilizacao procedimentos de (Arrange) e (Act)"
+
+        #region "Metodos Validacao Teste"
+
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\dataconsumidorpagefp001.csv", "dataconsumidorpagefp001#csv", DataAccessMethod.Sequential), TestCategory("FP001"), TestMethod]
         public void ConsumidorPage_FP_InformarDadosCorretos_ExibirMensagemOK()
         {
             Executar(Preparar, Salvar);
-            Assert.AreEqual(1,1);
+            Assert.AreEqual(1, 1);
         }
 
         [TestCategory("FP001"), TestMethod]
@@ -54,7 +57,6 @@ namespace br.procon.si.UI.Consumidor.Tests
             Assert.IsFalse(String.IsNullOrEmpty(NovoCpf));
         }
 
-        
-        #endregion
+        #endregion "Metodos Validacao Teste"
     }
 }

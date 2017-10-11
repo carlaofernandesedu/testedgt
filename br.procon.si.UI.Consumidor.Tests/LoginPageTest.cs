@@ -56,8 +56,6 @@ namespace br.procon.si.UI.Consumidor.Tests
             Assert.AreEqual(tituloPagina, page.Titulo);
         }
 
-        
-
         #endregion "Metodos Validacao Teste"
     }
 }

@@ -68,6 +68,7 @@
     <Compile Include="DTO\Coluna.cs" />
     <Compile Include="DTO\ConsumidorDTO.cs" />
     <Compile Include="DTO\LoginDTO.cs" />
+    <Compile Include="DTO\UsuarioDTO.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\ConfigurationHelper.cs" />
     <Compile Include="Helpers\DTOHelper.cs" />
@@ -76,11 +77,13 @@
     <Compile Include="Helpers\SeleniumHelper.cs" />
     <Compile Include="Helpers\SeleniumWebElementHelper.cs" />
     <Compile Include="Base\BasePage.cs" />
+    <Compile Include="UsuarioPageTest.cs" />
     <Compile Include="Pages\AtendimentoConsumidorPage.cs" />
     <Compile Include="Pages\ConsumidorPage.cs" />
     <Compile Include="Pages\GeradorCpfPage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="LoginPageTest.cs" />
+    <Compile Include="Pages\UsuarioPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +91,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="dataConsumidorPagefp001.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="dataUsuarioPagefp001.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="dataLoginPagefp001.csv">

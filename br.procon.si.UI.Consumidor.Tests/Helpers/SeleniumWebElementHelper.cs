@@ -1,9 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System;
-using System.Collections.Generic;
 
 namespace br.procon.si.UI.Consumidor.Tests.Helpers
 {
@@ -18,7 +17,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
 
         public static ISeleniumWebElementHelper Converter(IWebElement elemento)
         {
-            return  elemento != null ? new SeleniumWebElementHelper(elemento) : null;
+            return elemento != null ? new SeleniumWebElementHelper(elemento) : null;
         }
 
         public string ObterTexto()
@@ -107,6 +106,5 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
                 Thread.Sleep(milisegundos);
             return this;
         }
-        
     }
 }

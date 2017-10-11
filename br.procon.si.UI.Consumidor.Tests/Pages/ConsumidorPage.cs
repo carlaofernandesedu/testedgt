@@ -19,60 +19,80 @@ namespace br.procon.si.UI.Consumidor.Tests.Pages
         #endregion "Constantes"
 
         #region "Elementos Pagina por Selenium"
+
         [FindsBy(How = How.Id, Using = "Nome")]
         private IWebElement _nome;
+
         //[FindsBy(How = How.Id, Using = "Sexo")]
         //private List<IWebElement> _sexo;
         private const string _sexo = "Sexo";
+
         [FindsBy(How = How.Id, Using = "NomeSocial")]
         private IWebElement _nomeSocial;
+
         [FindsBy(How = How.Id, Using = "CPF")]
         private IWebElement _Cpf;
+
         [FindsBy(How = How.Id, Using = "RG")]
         private IWebElement _Rg;
+
         [FindsBy(How = How.Id, Using = "OrgaoEmissor")]
         private IWebElement _orgaoEmissor;
+
         [FindsBy(How = How.Id, Using = "OrgaoEmissorUF")]
         private IWebElement _orgaoEmissorUF;
+
         [FindsBy(How = How.Id, Using = "DataNascimento")]
         private IWebElement _dataNascimento;
+
         [FindsBy(How = How.Id, Using = "IdTipoDeficiencia")]
         private IWebElement _idTipoDeficiencia;
+
         [FindsBy(How = How.Id, Using = "OutroTipoDeficiencia")]
         private IWebElement _outroTipoDeficiencia;
+
         [FindsBy(How = How.Id, Using = "CEP")]
         private IWebElement _cep;
+
         [FindsBy(How = How.Id, Using = "Logradouro")]
         private IWebElement _logradouro;
+
         [FindsBy(How = How.Id, Using = "Numero")]
         private IWebElement _numero;
+
         [FindsBy(How = How.Id, Using = "Cidade")]
         private IWebElement _cidade;
+
         [FindsBy(How = How.Id, Using = "Estado")]
         private IWebElement _estado;
+
         [FindsBy(How = How.Id, Using = "Telefone")]
         private IWebElement _telefone;
+
         [FindsBy(How = How.Id, Using = "Celular")]
         private IWebElement _celular;
+
         [FindsBy(How = How.Id, Using = "Preferencias_TipoNotificacao")]
         private IWebElement _preferencias_TipoNotificacao;
+
         [FindsBy(How = How.Name, Using = "deficiencia")]
         private IWebElement _chkDeficiencia;
+
         [FindsBy(How = How.Id, Using = "Bairro")]
         private IWebElement _bairro;
+
         [FindsBy(How = How.Id, Using = "Complemento")]
         private IWebElement _complemento;
+
         [FindsBy(How = How.Id, Using = "btnSalvar")]
         private IWebElement _btnSalvar;
-
-        
 
         #endregion "Elementos Pagina por Selenium"
 
         #region "Atributos Selenium Convertidos"
 
         public ISeleniumWebElementHelper Nome { get { return ConverterElemento(_nome); } private set { } }
-        public List<ISeleniumWebElementHelper> Sexo { get { return Driver.ObterElementosPorNome(_sexo);}  private set { } }
+        public List<ISeleniumWebElementHelper> Sexo { get { return Driver.ObterElementosPorNome(_sexo); } private set { } }
         public ISeleniumWebElementHelper NomeSocial { get { return ConverterElemento(_nomeSocial); } private set { } }
         public ISeleniumWebElementHelper CPF { get { return ConverterElemento(_Cpf); } private set { } }
         public ISeleniumWebElementHelper RG { get { return ConverterElemento(_Rg); } private set { } }
@@ -104,7 +124,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Pages
         public void Salvar(ConsumidorDTO dto)
         {
             if (!String.IsNullOrWhiteSpace(dto.Nome)) Nome.Limpar().PreencherCampo(dto.Nome);
-            if (dto.Sexo > 0) Sexo.Find(el => el.ObterValor() == dto.Sexo.ToString()).Clicar(); 
+            if (dto.Sexo > 0) Sexo.Find(el => el.ObterValor() == dto.Sexo.ToString()).Clicar();
             if (!String.IsNullOrWhiteSpace(dto.NomeSocial)) NomeSocial.PreencherCampo(dto.NomeSocial);
             if (!String.IsNullOrWhiteSpace(dto.DataNascimento)) DataNascimento.PreencherCampo(dto.DataNascimento);
             if (!String.IsNullOrWhiteSpace(dto.CPF)) CPF.PreencherCampo(dto.CPF);

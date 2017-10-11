@@ -26,7 +26,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
 
         void Fechar();
 
-        ISeleniumHelper Aguardar(int segundos);
+        ISeleniumHelper Aguardar(int milisegundos);
 
         void InicializarElementos(object pagina);
 
@@ -47,6 +47,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         ISeleniumWebElementHelper ObterElementoPorId(string id);
 
         ISeleniumWebElementHelper ObterElementoPorNome(string nome);
+
         List<ISeleniumWebElementHelper> ObterElementosPorNome(string nome);
 
         ISeleniumWebElementHelper ObterElementoPorCssSelector(string cssSelector);
