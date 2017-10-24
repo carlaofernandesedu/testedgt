@@ -1,0 +1,12 @@
+﻿[
+  {
+    "testeId": "teste01",
+    "tipo": "sql",
+    "origem": "select 1 as coluna1"
+  },
+  {
+    "testeId": "teste02",
+    "tipo": "sql",
+    "origem": "select 2 as coluna1"
+  }
+]

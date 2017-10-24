@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{07917251-B772-4C85-8AB1-13208CDAAD59}</ProjectGuid>
+    <ProjectGuid>{2B1A00B6-576C-42C7-B0DE-0FA1EF7AF66A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>br.procon.si.UI.Consumidor.Tests</RootNamespace>
-    <AssemblyName>br.procon.si.UI.Consumidor.Tests</AssemblyName>
+    <RootNamespace>br.procon.si.UAT</RootNamespace>
+    <AssemblyName>br.procon.si.UAT</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -39,6 +39,14 @@
       <HintPath>..\packages\Dapper.1.50.0\lib\net45\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Dapper.Contrib, Version=1.50.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.Contrib.1.50.0\lib\net45\Dapper.Contrib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -63,58 +71,30 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Base\BasePage.cs" />
     <Compile Include="Base\BaseUITest.cs" />
-    <Compile Include="ConsumidorPageTest.cs" />
-    <Compile Include="DTO\Coluna.cs" />
-    <Compile Include="DTO\ConsumidorDTO.cs" />
-    <Compile Include="DTO\LoginDTO.cs" />
-    <Compile Include="DTO\UsuarioDTO.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers\Coluna.cs" />
     <Compile Include="Helpers\ConfigurationHelper.cs" />
+    <Compile Include="Helpers\ContextoDadosTeste.cs" />
     <Compile Include="Helpers\DTOHelper.cs" />
     <Compile Include="Helpers\ISeleniumHelper.cs" />
     <Compile Include="Helpers\ISeleniumWebElementHelper.cs" />
     <Compile Include="Helpers\SeleniumHelper.cs" />
     <Compile Include="Helpers\SeleniumWebElementHelper.cs" />
-    <Compile Include="Base\BasePage.cs" />
-    <Compile Include="UsuarioPageTest.cs" />
-    <Compile Include="Pages\AtendimentoConsumidorPage.cs" />
-    <Compile Include="Pages\ConsumidorPage.cs" />
-    <Compile Include="Pages\GeradorCpfPage.cs" />
-    <Compile Include="Pages\LoginPage.cs" />
-    <Compile Include="LoginPageTest.cs" />
-    <Compile Include="Pages\UsuarioPage.cs" />
+    <Compile Include="Helpers\SQLHelper.cs" />
+    <Compile Include="ConfigurationHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="dataConsumidorPagefp001.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="dataUsuarioPagefp001.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="dataLoginPagefp001.csv">
+    <None Include="datasource.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="chromedriver.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="geckodriver.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
