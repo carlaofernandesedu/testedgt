@@ -72,23 +72,26 @@ namespace br.procon.si.UAT.Helpers
         {
             get
             {
-                string conteudoArquivo;
-                using (var sr = new StreamReader(Path.Combine(CaminhoPastaApp, datasourceJson)))
-                {
-                    conteudoArquivo = sr.ReadToEnd();
-                }
-                return conteudoArquivo;
+                //string conteudoArquivo;
+                //using (var sr = new StreamReader(Path.Combine(CaminhoPastaApp, datasourceJson)))
+                //{
+                //    conteudoArquivo = sr.ReadToEnd();
+                //}
+                //return conteudoArquivo;
+                return DataSourceHelper.ObterConteudoJson(Path.Combine(CaminhoPastaApp, datasourceJson));
             }
         }
 
-        private static List<ContextoDadosTeste> _dataSourceTest;
+        private static List<ContextoDadosTeste> _dataSourceConfigTest;
 
-        public static List<ContextoDadosTeste> DataSourceTest
+        public static List<ContextoDadosTeste> DataSourceConfigTest
         {
             get
             {
-                return _dataSourceTest ?? (_dataSourceTest = JsonConvert.DeserializeObject<List<ContextoDadosTeste>>(JsonData));
+                //return _dataSourceTest ?? (_dataSourceTest = JsonConvert.DeserializeObject<List<ContextoDadosTeste>>(JsonData));
+                return _dataSourceConfigTest ?? (_dataSourceConfigTest = DataSourceHelper.ConverterPara<List<ContextoDadosTeste>>(JsonData));
             }
+   
         }
 
         public static string ObterConexaoBancoDeDados(string nome)

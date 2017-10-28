@@ -81,6 +81,7 @@
     <Compile Include="Helpers\Coluna.cs" />
     <Compile Include="Helpers\ConfigurationHelper.cs" />
     <Compile Include="Helpers\ContextoDadosTeste.cs" />
+    <Compile Include="Helpers\DataSourceHelper.cs" />
     <Compile Include="Helpers\DTOHelper.cs" />
     <Compile Include="Helpers\ISeleniumHelper.cs" />
     <Compile Include="Helpers\ISeleniumWebElementHelper.cs" />

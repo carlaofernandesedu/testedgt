@@ -11,7 +11,7 @@ namespace br.procon.si.UAT
         [TestMethod]
         public void TestJsonData()
         {
-            var retorno = ConfigurationHelper.DataSourceTest;
+            var retorno = ConfigurationHelper.DataSourceConfigTest;
             Assert.IsNotNull(retorno);
         }
 

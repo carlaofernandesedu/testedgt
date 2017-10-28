@@ -19,8 +19,7 @@ namespace br.procon.si.UAT.Base
 
         public virtual IEnumerable<T> ObterDadosDoDataSource<T>(string testeId) where T : new()
         {
-            var dataSource = ConfigurationHelper.DataSourceTest.Find(item => item.testeId == testeId);
-            return SQLHelper.Instance(ConfigurationHelper.ObterConexaoBancoDeDados(dataSource.nomeConexao)).Get<T>(dataSource.fonte);
+            return DataSourceHelper.ObterDadosParaTeste<T>(testeId);
         }
 
         public virtual T Executar<T>(Action<string> arrange, Func<T> act, string testeId = "")
