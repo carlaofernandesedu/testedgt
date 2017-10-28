@@ -1,11 +1,7 @@
-﻿using System;
+﻿using Dapper;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
-using Dapper;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace br.procon.si.UAT.Helpers
 {
@@ -13,6 +9,11 @@ namespace br.procon.si.UAT.Helpers
     {
         private string _connectionString;
         private int _commandTimeout;
+
+        public static SQLHelper Instance(string connectionstring, int commandTimeout = 300)
+        {
+            return new SQLHelper(connectionstring, commandTimeout);
+        }
 
         public SQLHelper(string connectionString, int commandTimeout = 300)
         {
@@ -24,7 +25,6 @@ namespace br.procon.si.UAT.Helpers
         {
             _commandTimeout = commandTimeout;
         }
-
 
         public SqlConnection Connection
         {
@@ -44,7 +44,7 @@ namespace br.procon.si.UAT.Helpers
 
         public IEnumerable<T> Get<T>(string query) where T : new()
         {
-            return Get<T>(query,null);
+            return Get<T>(query, null);
         }
     }
 }

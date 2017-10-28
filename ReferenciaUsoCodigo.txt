@@ -1,3 +1,7 @@
 https://msdn.microsoft.com/en-us/library/ee624082.aspx
 Install-Package CodeCracker.CSharp 
 https://www.youtube.com/watch?v=grf4L3AKSrs
+
+https://github.com/StackExchange/Dapper/tree/master/Dapper.Contrib
+https://www.newtonsoft.com/json/help/html/ReadJson.htm
+https://jeremybytes.blogspot.com.br/2015/10/getting-nunit-test-parameters-from-file.html

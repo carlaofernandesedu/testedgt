@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
 
 namespace br.procon.si.UAT.Helpers
 {
@@ -71,7 +70,7 @@ namespace br.procon.si.UAT.Helpers
 
         private static string JsonData
         {
-            get 
+            get
             {
                 string conteudoArquivo;
                 using (var sr = new StreamReader(Path.Combine(CaminhoPastaApp, datasourceJson)))
@@ -83,12 +82,19 @@ namespace br.procon.si.UAT.Helpers
         }
 
         private static List<ContextoDadosTeste> _dataSourceTest;
+
         public static List<ContextoDadosTeste> DataSourceTest
         {
-              get
-              {
+            get
+            {
                 return _dataSourceTest ?? (_dataSourceTest = JsonConvert.DeserializeObject<List<ContextoDadosTeste>>(JsonData));
-              }
-        }  
+            }
+        }
+
+        public static string ObterConexaoBancoDeDados(string nome)
+        {
+            var conexao = string.IsNullOrEmpty(nome) ? ConfigurationManager.ConnectionStrings[ConfigurationManager.ConnectionStrings.Count - 1].ConnectionString : ConfigurationManager.ConnectionStrings[nome].ConnectionString;
+            return conexao;
+        }
     }
 }

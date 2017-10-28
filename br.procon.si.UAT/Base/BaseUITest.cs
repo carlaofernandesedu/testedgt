@@ -1,6 +1,6 @@
 ﻿using br.procon.si.UAT.Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace br.procon.si.UAT.Base
 {
@@ -8,9 +8,6 @@ namespace br.procon.si.UAT.Base
     {
         protected SeleniumHelper Browser;
 
-        public TestContext TestContext { get; set; }
-
-        [TestInitialize]
         public virtual void Inicializar()
         {
             Browser = SeleniumHelper.Instance();
@@ -18,23 +15,28 @@ namespace br.procon.si.UAT.Base
             Browser.AguardarExecucaoScripts(ConfigurationHelper.TempoDeEsperaExecucaoScript);
         }
 
-        public abstract void Preparar(string testkey);
+        public abstract void Preparar(string testeId);
 
-        public virtual T Executar<T>(Action<string> arrange, Func<T> act, string testkey = "")
+        public virtual IEnumerable<T> ObterDadosDoDataSource<T>(string testeId) where T : new()
+        {
+            var dataSource = ConfigurationHelper.DataSourceTest.Find(item => item.testeId == testeId);
+            return SQLHelper.Instance(ConfigurationHelper.ObterConexaoBancoDeDados(dataSource.nomeConexao)).Get<T>(dataSource.fonte);
+        }
+
+        public virtual T Executar<T>(Action<string> arrange, Func<T> act, string testeId = "")
             where T : class
         {
-            arrange?.Invoke(testkey);
+            arrange?.Invoke(testeId);
             return act?.Invoke();
         }
 
-        public virtual void Executar(Action<string> arrange, Action act, string testkey = "")
+        public virtual void Executar(Action<string> arrange, Action act, string testeId = "")
         {
-            arrange?.Invoke(testkey);
+            arrange?.Invoke(testeId);
             act?.Invoke();
         }
 
-        [TestCleanup]
-        public virtual void TestCleanupTest()
+        public virtual void Finalizar()
         {
             try
             {
