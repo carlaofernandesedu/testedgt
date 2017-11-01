@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
@@ -91,7 +90,6 @@ namespace br.procon.si.UAT.Helpers
                 //return _dataSourceTest ?? (_dataSourceTest = JsonConvert.DeserializeObject<List<ContextoDadosTeste>>(JsonData));
                 return _dataSourceConfigTest ?? (_dataSourceConfigTest = DataSourceHelper.ConverterPara<List<ContextoDadosTeste>>(JsonData));
             }
-   
         }
 
         public static string ObterConexaoBancoDeDados(string nome)

@@ -3,11 +3,11 @@
 namespace br.procon.si.UAT.Helpers
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    public sealed class Coluna : Attribute
+    public sealed class ColunaExcelHelper : Attribute
     {
         private readonly string coluna;
 
-        public Coluna(string nome)
+        public ColunaExcelHelper(string nome)
         {
             this.coluna = nome;
         }

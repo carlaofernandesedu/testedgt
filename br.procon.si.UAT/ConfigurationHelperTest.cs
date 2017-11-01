@@ -1,7 +1,7 @@
-﻿using System;
-using br.procon.si.UAT.Base;
+﻿using br.procon.si.UAT.Base;
 using br.procon.si.UAT.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace br.procon.si.UAT
 {
@@ -38,7 +38,7 @@ namespace br.procon.si.UAT
     public class SomaDTO
     {
         public string testeId { get; set; }
-        public int arg_um {get;set;}
+        public int arg_um { get; set; }
         public int arg_dois { get; set; }
     }
 }

@@ -14,8 +14,8 @@ namespace br.procon.si.UAT.Helpers
             {
                 if (prop.CanWrite)
                 {
-                    var attributes = prop.GetCustomAttributes(typeof(Coluna), true);
-                    var columnName = attributes.Length > 0 ? ((Coluna)attributes[0]).Nome : prop.Name;
+                    var attributes = prop.GetCustomAttributes(typeof(ColunaExcelHelper), true);
+                    var columnName = attributes.Length > 0 ? ((ColunaExcelHelper)attributes[0]).Nome : prop.Name;
                     if (registro.Table.Columns.Contains(columnName))
                     {
                         if (registro[columnName] != DBNull.Value)
