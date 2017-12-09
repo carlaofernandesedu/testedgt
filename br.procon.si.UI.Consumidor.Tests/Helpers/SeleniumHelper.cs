@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using static br.procon.si.UI.Consumidor.Tests.Helpers.SeleniumWebElementHelper;
+using System.Drawing.Imaging;
 
 namespace br.procon.si.UI.Consumidor.Tests.Helpers
 {
@@ -66,8 +67,8 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
 
         public void AguardarCarregarPagina(int segundos)
         {
-            //Cb.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(segundos));
-            Cb.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(segundos);
+            Cb.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(segundos));
+            //Cb.Manage().Timeouts().Page = TimeSpan.FromSeconds(segundos);
         }
 
         public void AguardarExecucaoScripts(int segundos)
@@ -189,7 +190,7 @@ namespace br.procon.si.UI.Consumidor.Tests.Helpers
         private static void SalvarScreenShot(Screenshot screenshot, string fileName)
         {
             var pathFile = Path.Combine(ConfigurationHelper.CaminhoPastaImagens, fileName);
-            screenshot.SaveAsFile(pathFile, ScreenshotImageFormat.Png);
+            screenshot.SaveAsFile(pathFile, ImageFormat.Png);
         }
 
         public void Fechar()

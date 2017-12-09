@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "br.procon.si.UI.Consumidor.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "br.procon.si.UAT", "br.procon.si.UAT\br.procon.si.UAT.csproj", "{2B1A00B6-576C-42C7-B0DE-0FA1EF7AF66A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "br.procon.si.UAT.Consumidor.VsTests", "br.procon.si.UAT.Comsumidor.VsTests\br.procon.si.UAT.Consumidor.VsTests.csproj", "{9B0F7153-CDC3-41E3-8F79-C0D66050FFD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "br.procon.si.UAT.Consumidor.NuTests", "br.procon.si.UAT.Consumidor.NuTests\br.procon.si.UAT.Consumidor.NuTests.csproj", "{067456C0-086C-46A8-B37F-1405717B7BFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{2B1A00B6-576C-42C7-B0DE-0FA1EF7AF66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B1A00B6-576C-42C7-B0DE-0FA1EF7AF66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B1A00B6-576C-42C7-B0DE-0FA1EF7AF66A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B0F7153-CDC3-41E3-8F79-C0D66050FFD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B0F7153-CDC3-41E3-8F79-C0D66050FFD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B0F7153-CDC3-41E3-8F79-C0D66050FFD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B0F7153-CDC3-41E3-8F79-C0D66050FFD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{067456C0-086C-46A8-B37F-1405717B7BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{067456C0-086C-46A8-B37F-1405717B7BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{067456C0-086C-46A8-B37F-1405717B7BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{067456C0-086C-46A8-B37F-1405717B7BFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
