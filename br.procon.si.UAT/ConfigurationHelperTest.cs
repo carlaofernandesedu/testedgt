@@ -23,9 +23,16 @@ namespace br.procon.si.UAT
         }
 
         [TestMethod]
-        public void TestObterDadosDataSource()
+        public void TestObterDadosDataSourceSQL()
         {
-            var retorno = ObterDadosDoDataSource<SomaDTO>("teste01");
+            var retorno = ObterDadosDoDataSource<SomaDTO>("teste001");
+            Assert.IsNotNull(retorno);
+        }
+
+        [TestMethod]
+        public void TestObterDadosDataSourceExcel()
+        {
+            var retorno = ObterDadosDoDataSource<SomaDTO>("teste002");
             Assert.IsNotNull(retorno);
         }
 

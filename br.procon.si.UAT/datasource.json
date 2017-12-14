@@ -1,14 +1,14 @@
 ﻿[
   {
-    "testeId": "teste01",
+    "testeId": "teste001",
     "tipoFonte": "sql",
-    "fonte": "select * from dbo.tb_soma where testeId='1'",
+    "fonte": "select 1 as arg_um, 5 as arg_dois",
     "nomeConexao": "SGGH"
   },
   {
-    "testeId": "teste02",
-    "tipoFonte": "sql",
-    "fonte": "select * from dbo.tb_soma where testeId='2'",
-    "nomeConexao": "SGGH"
+    "testeId": "teste002",
+    "tipoFonte": "excel",
+    "fonte": "somateste002.xlsx",
+    "nomeConexao": "somateste002"
   }
 ]

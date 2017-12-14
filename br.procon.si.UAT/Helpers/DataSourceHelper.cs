@@ -24,7 +24,20 @@ namespace br.procon.si.UAT.Helpers
         public static IEnumerable<T> ObterDadosParaTeste<T>(string testeId) where T : new()
         {
             var dataConfig = ConfigurationHelper.DataSourceConfigTest.Find(item => item.testeId == testeId);
-            return SQLHelper.Instance(ConfigurationHelper.ObterConexaoBancoDeDados(dataConfig.nomeConexao)).Get<T>(dataConfig.fonte);
+            switch (dataConfig.tipoFonte.ToLower())
+            {
+                case "sql":
+                    return SQLHelper.Instance(ConfigurationHelper.ObterConexaoBancoDeDados(dataConfig.nomeConexao)).Get<T>(dataConfig.fonte);
+                default:
+                    var pathExcel = Path.Combine(ConfigurationHelper.CaminhoPastaApp, dataConfig.fonte);
+                    if (File.Exists(pathExcel))
+                        return ExcelHelper.Instance(pathExcel).Get<T>(dataConfig.nomeConexao, dataConfig.testeId);
+                    else
+                        return null;
+            }
+            
         }
+
+        
     }
 }

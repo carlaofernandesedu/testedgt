@@ -97,5 +97,6 @@ namespace br.procon.si.UAT.Helpers
             var conexao = string.IsNullOrEmpty(nome) ? ConfigurationManager.ConnectionStrings[ConfigurationManager.ConnectionStrings.Count - 1].ConnectionString : ConfigurationManager.ConnectionStrings[nome].ConnectionString;
             return conexao;
         }
+
     }
 }

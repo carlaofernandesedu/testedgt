@@ -90,6 +90,7 @@
     <Compile Include="Helpers\ISeleniumWebElementHelper.cs" />
     <Compile Include="Helpers\SeleniumHelper.cs" />
     <Compile Include="Helpers\SeleniumWebElementHelper.cs" />
+    <Compile Include="Helpers\ExcelHelper.cs" />
     <Compile Include="Helpers\SQLHelper.cs" />
     <Compile Include="ConfigurationHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,6 +103,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="somateste002.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
