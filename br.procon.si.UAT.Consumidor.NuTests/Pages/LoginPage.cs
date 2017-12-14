@@ -2,12 +2,11 @@
 using br.procon.si.UAT.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System;
 using static br.procon.si.UAT.Helpers.SeleniumWebElementHelper;
 
 namespace br.procon.si.UAT.Consumidor.NuTests.Pages
 {
-    public class LoginPage : BasePage
+    public partial class LoginPage : BasePage
     {
         #region "Constantes"
 
@@ -36,22 +35,12 @@ namespace br.procon.si.UAT.Consumidor.NuTests.Pages
         public ISeleniumWebElementHelper BtnSubmit { get { return ConverterElemento(_btnSubmit); } private set { } }
 
         #endregion "Atributos Selenium Convertidos"
-
-        public LoginPage()
+       
+        public enum AcoesLogar
         {
-        }
-
-        public override string ObterPaginaUrl()
-        {
-            return new Uri(ConfigurationHelper.SiteUrl + paginaUrl).AbsoluteUri;
-        }
-
-        public void Logar(string usuario, string senha)
-        {
-            Email.PreencherCampo(usuario);
-            Password.PreencherCampo(senha);
-            //CapturarTela();
-            BtnSubmit.ClicarEAguardar(tempoEspera);
+            Sucesso,
+            Incorreto,
+            Bloqueado
         }
     }
 }

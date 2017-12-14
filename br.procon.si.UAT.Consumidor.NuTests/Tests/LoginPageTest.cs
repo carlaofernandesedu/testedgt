@@ -41,10 +41,11 @@ namespace br.procon.si.UAT.Consumidor.NuTests.Tests
         //}
         [Category("Login")]
         [Test]
-        public void FP002_InformarUrlPagina_PaginaCarregada()
+        public void TC003_LogarComUsuarioExistente()
         {
-            Executar(null, () => { page = Browser.ObterPagina<LoginPage>(); });
-            Assert.AreEqual(tituloPagina, page.Titulo);
+            bool resultado = false;
+            Executar(null, () => { resultado = LoginPage.AcoesLogar.Sucesso == Browser.ObterPagina<LoginPage>().Logar("carlos21@gmail.com","123456"); });
+            Assert.IsTrue(resultado);
         }
 
         #endregion "Metodos Validacao Teste"

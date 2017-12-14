@@ -7,7 +7,7 @@ using static br.procon.si.UAT.Helpers.SeleniumWebElementHelper;
 
 namespace br.procon.si.UAT.Consumidor.VsTests.Pages
 {
-    public class LoginPage : BasePage
+    public partial class LoginPage : BasePage
     {
         #region "Constantes"
 
@@ -37,21 +37,5 @@ namespace br.procon.si.UAT.Consumidor.VsTests.Pages
 
         #endregion "Atributos Selenium Convertidos"
 
-        public LoginPage()
-        {
-        }
-
-        public override string ObterPaginaUrl()
-        {
-            return new Uri(ConfigurationHelper.SiteUrl + paginaUrl).AbsoluteUri;
-        }
-
-        public void Logar(string usuario, string senha)
-        {
-            Email.PreencherCampo(usuario);
-            Password.PreencherCampo(senha);
-            //CapturarTela();
-            BtnSubmit.ClicarEAguardar(tempoEspera);
-        }
     }
 }

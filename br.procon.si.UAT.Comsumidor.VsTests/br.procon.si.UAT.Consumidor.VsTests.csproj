@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="DTO\LoginDTO.cs" />
     <Compile Include="Pages\AtendimentoConsumidorPage.cs" />
+    <Compile Include="Pages\LoginPageOperacoes.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Tests\BaseUITest.cs" />
     <Compile Include="Tests\LoginPageTest.cs" />
