@@ -58,6 +58,8 @@ namespace br.procon.si.UAT.Helpers
 
         void ObterFocoNoElementoPorId(string id);
 
+        T ObterPaginaCarregada<T>() where T : BasePage, new();
+
         T ObterPagina<T>(bool limparCookies = true, bool maximizado = true) where T : BasePage, new();
     }
 }

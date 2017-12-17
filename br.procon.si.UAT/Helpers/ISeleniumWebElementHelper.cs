@@ -25,5 +25,7 @@
         SeleniumWebElementHelper Submit();
 
         SeleniumWebElementHelper Aguardar(int milisegundos);
+
+        SeleniumWebElementHelper ObterElementoPorXPath(string query); 
     }
 }

@@ -106,5 +106,15 @@ namespace br.procon.si.UAT.Helpers
                 Thread.Sleep(milisegundos);
             return this;
         }
+
+        public SeleniumWebElementHelper ObterElementoPorXPath(string query)
+        {
+            return (SeleniumWebElementHelper)ObterElemento(By.XPath(query));
+        }
+
+        private ISeleniumWebElementHelper ObterElemento(By condicao)
+        {
+            return SeleniumWebElementHelper.Converter(_elemento.FindElement(condicao));
+        }
     }
 }

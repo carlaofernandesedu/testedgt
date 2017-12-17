@@ -152,6 +152,14 @@ namespace br.procon.si.UAT.Helpers
             return pagina;
         }
 
+        public T ObterPaginaCarregada<T>() where T : BasePage , new()
+        {
+            var pagina = new T();
+            pagina.DefinirDriver(this);
+            pagina.InicializarElementos();
+            return pagina;
+        }
+
         public IEnumerable<IWebElement> ObterElementosPorClasse(string className)
         {
             return Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.ClassName(className)));

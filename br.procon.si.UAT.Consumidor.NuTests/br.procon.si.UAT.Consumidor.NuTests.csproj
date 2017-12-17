@@ -52,6 +52,7 @@
     <Compile Include="DTO\LoginDTO.cs" />
     <Compile Include="Pages\ConsumidorPageOperacoes.cs" />
     <Compile Include="Pages\ConsumidorPage.cs" />
+    <Compile Include="Pages\DetalheFichaPage.cs" />
     <Compile Include="Pages\LoginPageOperacoes .cs" />
     <Compile Include="Pages\UsuarioPage.cs" />
     <Compile Include="Pages\UsuarioPageOperacoes.cs" />
